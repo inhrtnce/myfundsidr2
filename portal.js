@@ -13,16 +13,16 @@ function verifyBneficiaryDetails(){
 
   
   //BENEFICIARY FIRSTNAME
-  if (beneficiaryFirstName        ===    'keira'&& 
-      beneficiaryLastName         ===    'croft'&&
-      beneficiaryTestator         ===    'tyrion edward lannister'&&
-      beneficiaryTestatorAdress   ===    'illinois, united states'&&
-      beneficiaryLawyer           ===    'robert george'&&
-      beneficiaryInheritanceAmount===    '2000000'){
+  if (beneficiaryFirstName        ===    'dani'&& 
+      beneficiaryLastName         ===    'avery'&&
+      beneficiaryTestator         ===    'clinton dani avery'&&
+      beneficiaryTestatorAdress   ===    'california, united states'&&
+      beneficiaryLawyer           ===    'stuart bagley'&&
+      beneficiaryInheritanceAmount===    '6500000'){
 
   //email and password
-  const BENEFICIARY_EMAIL         = 'keiracroft@gmail.com';
-  const BENEFICIARY_PASSWORD      = '@keiracroft#';
+  const BENEFICIARY_EMAIL         = 'daniaverywalter@gmail.com';
+  const BENEFICIARY_PASSWORD      = '$Mrdaniwalt$';
 
   document.getElementById('beneficiaryloginemailhiddenelement').innerText = BENEFICIARY_EMAIL;
   document.getElementById('beneficiarypasswordhiddenelement').innerText = BENEFICIARY_PASSWORD;
