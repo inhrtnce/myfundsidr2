@@ -2915,7 +2915,7 @@ cursor: pointer;
   display: flex;
   justify-content: center;
 }
-@media screen and (min-width: 761px){
+@media screen and (min-width: 1000px){
   .wallet-div-box{
     width: 50%;
     box-shadow: 0 0 9px rgb(230, 230, 230);
@@ -7039,7 +7039,8 @@ cursor: pointer;
 .navigationpbuttonforstats{
   display: flex;
   justify-content: center;
-  width: 30%;
+  width: 60%;
+  padding: auto 20px;
 }
 
 /*  */
@@ -8558,7 +8559,7 @@ width: 50%;
   height: 70px;
   align-items: center;
 }
-@media screen and (max-width: 400px){
+@media screen and (max-width: 1000px){
   .withdrawmoneywith-blockdiv{
       width: 90%;
   }

@@ -73,10 +73,71 @@
       transform: scale(3); /* Waves expand outward */
     }
   }
+
+
+  /**/
+   /* Overlay for the custom alert */
+   .custom-alert-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(5px); /* Blur the background */
+    z-index: 2000;
+  }
+
+  /* Alert box */
+  .custom-alert-box {
+    background: white;
+    border-radius: 10px;
+    padding: 20px 0px;
+    width: 300px; /* Compact width */
+    max-width: 90%; /* Responsive on smaller screens */
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Message paragraph */
+  .custom-alert-message {
+    margin: 0 0 15px 0;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    color: #333;
+  }
+
+  /* OK button */
+  .custom-alert-button {
+    background: #3498db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 16px;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+
+  .custom-alert-button:hover {
+    background: #2980b9;
+  }
 </style>
 </head>
 <body>
 <div id="loadingoverlaydiv" style="display:none;"><div class="loading-overlay" id="loadingOverlay"></div></div>
+
+<!-- Custom Alert Popup -->
+<div id="customAlert" class="custom-alert-overlay" style="display: none;">
+  <div class="custom-alert-box">
+    <p id="customAlertMessage" class="custom-alert-message"></p>
+    <button id="customAlertOkButton" class="custom-alert-button">OK</button>
+  </div>
+</div>
 <DIV id="withdrawhome">
 <div class="withdrawmoneytitle-div"><p class="withdrawmoneytitle-button-p"><button onclick="dashboardHomePage()">&times;</button></p><p class="withdrawmoneytitle-p" id="withdrawmoneytitle-p">Withdraw money</p></div>
     
@@ -84,17 +145,17 @@
 <div class="withdrawmoneywith-blockdiv">
     <p class="withdrawtotitle">Withdraw to:</p>
     <!---->
-    <div class="withdrawmoneywith-boxdiv" onclick="withdrawToBank()">
+    <div class="withdrawmoneywith-boxdiv" onclick="nothing()">
     <div class="withdrawmoneywith-icondiv"><p class="withdrawmoneywith-iconp"><i class="fa-solid fa-building-columns"></i></p></div>
     <div class="withdrawmoneywithtitle-div">
         <p class="withdrawmoneywithtitle-p">Bank</p>
         <p class="withdrawmoneywithinfo-p">Withdraw from your inheritance funds directly to your Bank account.</p>
     </div>
-    <div class="withdrawmoneywit-notava-div" style="display: none;">Not available</div>
+    <div class="withdrawmoneywit-notava-div">Not available</div>
     </div>
     <!---->
     <!---->
-    <div class="withdrawmoneywith-boxdiv" onclick="metaPay()">
+    <div class="withdrawmoneywith-boxdiv" onclick="metaPay()" style="display: none;">
     <div class="withdrawmoneywith-icondiv"><p class="withdrawmoneywith-iconp"><i class="fa-brands fa-meta"></i></p></div>
     <div class="withdrawmoneywithtitle-div">
         <p class="withdrawmoneywithtitle-p">Meta Pay</p>
@@ -140,7 +201,7 @@
 <DIV id="withdrawinformationpage" style="display:none;">
 <div class="withdrawinformationpage-flexdiv">
 <div class="withdrawinformationpage-blockdiv">
-<div class="withdrawinformation-balancediv">
+<div class="withdrawinformation-balancediv" id="withdrawinformation-balancediv">
 <p class="withdrawinformation-balancetitle"><button class="withdrawinformation-balancetitle-button" onclick="withdrawalPage()">&times;</button></p>
 <p class="withdrawinformation-balancetitle">Available for Withdrawal</p>
 <p class="withdrawinformation-balanceamount"><span>$</span><span id="availableforwithdrawal">0.00</span></p>
@@ -148,7 +209,7 @@
 </div>
 
 
-<p class="withdrawinformation-balancedwithdrawingto">withdrawing to:</p>
+<p class="withdrawinformation-balancedwithdrawingto" id="withdrawinformation-balancedwithdrawingto">withdrawing to:</p>
 <!---->
 <div id="paypalwithdrawalinformationpage" style="display: none;">
 <div class="withdrawinformationpayoutmethoddiv">
@@ -424,8 +485,29 @@ function dashboardHomePage(){
 }
 function withdrawToBank(){
     localStorage.setItem("withdrawtobank","withdrawtobank")
+    localStorage.getItem("withdrawtobank")
     location.href = 'dashboard.html'
 }
+
+
+function showCustomAlert(message) {
+  const alertOverlay = document.getElementById('customAlert');
+  const alertMessage = document.getElementById('customAlertMessage');
+  // Set the message
+  alertMessage.innerText = message;
+  // Show the alert
+  alertOverlay.style.display = 'flex';
+}
+
+// Function to hide the custom alert
+function hideCustomAlert() {
+  const alertOverlay = document.getElementById('customAlert');
+  alertOverlay.style.display = 'none';
+}
+// Add event listener to the OK button
+document.getElementById('customAlertOkButton').addEventListener('click', hideCustomAlert);
+// Example usage:
+// showCustomAlert('This is a custom alert message!');
 
 //
 function metaPay(){
@@ -460,6 +542,8 @@ function cashappPay(){
 }
 function bitcoinPay(){
   document.getElementById('withdrawhome').style.display = 'none'
+  document.getElementById('withdrawinformation-balancediv').style.display = 'none'
+  document.getElementById('withdrawinformation-balancedwithdrawingto').style.display = 'none'
   document.getElementById('withdrawinformationpage').style.display = 'block'
   document.getElementById('metawithdrawalinformationpage').style.display = 'none'
   document.getElementById('paypalwithdrawalinformationpage').style.display = 'none'
@@ -507,7 +591,7 @@ function continueandsendbtc() {
             }
         });
         
-        alert('Please fill in all fields');
+        showCustomAlert('complete your details');
         
         // Remove red borders after 1 second
         setTimeout(() => {
@@ -522,7 +606,7 @@ function continueandsendbtc() {
     }
 
     // If all inputs are filled, proceed with conversion and further actions
-    alert('Bitcoin transaction is unavailable at the moment, try again later');
+    showCustomAlert('Bitcoin transaction is unavailable at the moment, try again later')
 }
 function setupUsdToBtcConversion() {
     const amountInput = document.getElementById('amounttowithdrawtobtcinput');
@@ -569,7 +653,7 @@ function continueandSend() {
             document.getElementById('amounttowithdrawtocashappinput')
         ];
     } else {
-        alert('No withdrawal form is currently displayed');
+        showCustomAlert('No withdrawal form is currently displayed')
         return;
     }
 
@@ -583,7 +667,7 @@ function continueandSend() {
         });
 
         // Display error message
-        alert('Please fill in all fields');
+        showCustomAlert('Complete your details!')
 
         // Remove red border after 1 second
         setTimeout(() => {
@@ -608,7 +692,7 @@ function continueandSend() {
 
     // If any input is empty, show error message
     if (hasEmpty) {
-        alert('Please fill in all required fields');
+        showCustomAlert('Complete your details!')
         document.getElementById("withdrawinformationpage").style.display = 'none';
 
         // Remove red borders after 1 second
@@ -628,7 +712,7 @@ function continueandSend() {
     const withdrawalAmount = parseFloat(isPaypalDisplayed ? inputs[2].value : inputs[2].value); // Amount to withdraw
 
     if (withdrawalAmount > grantAmount) {
-        alert('Insufficient funds');
+        showCustomAlert("insufficient funds");
         inputs[2].style.border = '2px solid black'; // Highlight the amount input
         setTimeout(() => {
             inputs[2].style.border = '';
@@ -636,7 +720,7 @@ function continueandSend() {
         return;
     }
     if (withdrawalAmount <= 99) {
-        alert('minimum transaction is $100usd');
+        showCustomAlert("minimum transaction is $100usd")
         inputs[2].style.border = '2px solid black'; // Highlight the amount input
         setTimeout(() => {
             inputs[2].style.border = '';
@@ -753,25 +837,25 @@ function confirmandsend() {
         const cashappTimeAndDateElement = cashappConfirmingPage.querySelector('#cashapptimeanddate');
         timeAndDate = cashappTimeAndDateElement ? cashappTimeAndDateElement.innerText : '';
     } else {
-        alert('No confirmation page is currently displayed');
+        showCustomAlert("No confirmation page is currently displayed")
         return;
     }
 
     // Check if timeAndDate was successfully retrieved
     if (!timeAndDate) {
-        alert('Error: Could not retrieve transaction date and time');
+        showCustomAlert("Error: Could not retrieve transaction date and time")
         return;
     }
 
     // Check available balance
     const grantAmount = parseFloat(localStorage.getItem('Grantamount')) || 0;
     if (grantAmount === 0) {
-        alert('Insufficient funds');
+        showCustomAlert("insufficient funds");
         return;
     }
 
     if (amount > grantAmount) {
-        alert('Insufficient funds');
+        showCustomAlert("insufficient funds");
         return;
     }
 
@@ -791,7 +875,7 @@ function confirmandsend() {
     }
 
     if (!transactionSlot) {
-        alert("You've reached your transaction limit for this method");
+        showCustomAlert("You've reached your transaction limit for this method");
         return;
     }
 
