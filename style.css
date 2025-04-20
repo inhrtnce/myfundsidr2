@@ -7003,6 +7003,9 @@ cursor: pointer;
 }
 
 /*navigations*/
+.withdrawmoneytitle-button-p{
+  display: none;
+}
 #navigationbuttonsdivdisplay{
   display: block;
 }
@@ -7024,7 +7027,6 @@ cursor: pointer;
 .navigationpbutton-p{
   display: flex;
   justify-content: center;
-  width: 30%;
 }
 .navigationbuttonformenu{
   background: none;
@@ -7035,9 +7037,9 @@ cursor: pointer;
   color: black;
 }
 .navigationpbuttonforstats{
-  width: 50%;
   display: flex;
   justify-content: center;
+  width: 30%;
 }
 
 /*  */
@@ -8129,4 +8131,728 @@ padding: 1px 0px;
 .qualifiedpopmessagedivbox{
   width: 80%;
 }
+}
+
+.withdrawmoneytitle-div{
+  width: 100%;
+}
+.withdrawmoneytitle-div button{
+  display:block;
+  background: none;
+  border: none;
+  font-size: 25px;
+}
+.withdrawmoneytitle-p{
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+.withdrawmoneytitle-p{
+  font-weight: bold;
+  color: rgb(90, 90, 90)
+}
+.withdrawmoneywith-flexdiv{
+  display: flex;
+  justify-content: center;
+}
+.withdrawmoneywith-blockdiv{
+  width: 50%;
+}
+.withdrawtotitle{
+  margin: 0;
+  font-weight: 12px;
+  color: rgb(130, 130, 130)
+}
+.withdrawmoneywith-boxdiv{
+  cursor: pointer;
+  box-shadow: 0 0 9px rgb(203, 203, 203);
+  border-radius: 10px;
+  display: flex;
+  margin-top: 30px;
+}
+.withdrawmoneywith-icondiv{
+  display: flex;
+  width: 50px;
+  justify-content: center;
+  align-items: center;
+}
+.withdrawmoneywithtitle-div{
+  width: 100%;
+}
+.withdrawmoneywithtitle-p{
+  font-weight: bold;
+  margin-bottom: 0;
+}
+.withdrawmoneywithinfo-p{
+  margin-top: 0;
+  font-size: 10px;
+  color:rgb(94, 94, 94)
+}
+.withdrawmoneywit-notava-div{
+  font-size: 8px;
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+}
+/**/
+.withdrawinformationpage-flexdiv{
+  display: flex;
+  justify-content: center;
+}
+.withdrawinformationpage-blockdiv{
+  width: 60%;
+  padding: 20px;
+}
+.withdrawinformation-balancetitle{
+  font-size: 12px;
+}
+.withdrawinformation-balancetitle-button{
+  background: none;
+  border: none;
+  font-size: 20px;
+}
+.withdrawinformation-balanceamount{
+  font-weight: bold;
+  font-size: 15px;
+}
+.withdrawinformation-balancedisclaimer{
+  font-size: 8px;
+  color:rgb(117, 117, 117)
+}
+.withdrawinformation-balancedwithdrawingto{
+  font-size: 10px;
+  color: rgb(132, 132, 132);
+}
+.withdrawinformationpayoutmethoddiv{
+  border: 1px solid rgb(147, 147, 147);
+  padding: 20px;
+  border-radius: 5px;
+  margin-bottom: 30px;
+}
+.withdrawinformationpayoutmethodtitle-div{
+  display: flex;
+}
+.fa-paypal{
+  color: rgb(0, 0, 95);
+}
+.fa-circle-dollar-to-slot{
+  color: green;
+}
+.fa-bitcoin{
+  color: goldenrod;
+}
+.fa-meta{
+  color: blue;
+}
+.withdrawinformationpayoutmethodtitle-p{
+  font-weight: bold;
+  margin-left: 10px;
+}
+.withdrawinformationpayoutmethod-addresstitle-p{
+  font-size: 10px;
+  color: rgb(92, 92, 92);
+}
+.withdrawinformationpayoutmethod-addressinput-p input{
+  width: 50%;
+  border-radius: 5px;
+  padding: 5px;
+  height: 30px;
+  border: 1px solid rgb(122, 122, 122);
+}
+.withdrawinformationpayoutmethod-amounttitle-div{
+  display: flex;
+  justify-content: center;
+}
+.withdrawinformationpayoutmethod-amounttitle-div input{
+height: 50px;
+padding: 10px;
+font-size: 20px;
+border-radius: 5px;
+border: 1px solid rgb(130, 130, 130);
+color: rgb(107, 106, 106)
+}
+.inputusdsign{
+  font-size: 20px;
+  color: rgb(107, 106, 106)
+}
+.withdrawinformationpayoutmethodbuttondiv{
+  display: flex;
+  justify-content: center;
+}
+.withdrawinformationpayoutmethoddbutton{
+  border-radius: 10px;
+  background: rgb(1, 1, 180);
+  color: white;
+  border: none;
+  width: 60%;
+  padding: 4px 0px;
+}
+.withdrawinformationpayoutmethodmetadiv{
+  display: flex;
+  justify-content: center;
+}
+.withdrawinformationpayoutmethod-addressinput-pmeta input{
+  border-radius: 5px;
+  padding: 5px ;
+  border: 1px solid rgb(164, 164, 164);
+  font-size: 10px;
+  width: 100%
+}
+.withdrawinformationpayoutmethod-amounttitlemeta-div input{
+  border-radius: 5px;
+  border: 1px solid rgb(150, 150, 150);
+  padding: 5px;
+  color: rgb(134, 134, 134);
+  font-size: 20px;
+  width: 100%;
+}
+.withdrawinformationpayoutmethodbuttonmeta-div{
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+.withdrawinformationpayoutmethodbuttonmeta-div p{
+  width: 60%;
+}
+.withdrawinformationpayoutmethodbuttonmeta-div button{
+background: rgb(0, 0, 215);
+color: white;
+border-radius: 5px;
+padding: 2px;
+border: none;
+width: 50%;
+}
+#bitcoinwithdrawalinformationpage {
+  position: fixed; /* Makes it an overlay */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Centers the div */
+  width: 50%;
+  max-width: 400px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  box-sizing: border-box;
+  z-index: 1000; /* Ensures it appears above other elements */
+}
+
+.bitcoin-chain-withdraw-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.bitcoin-chain-withdraw-header h2 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+}
+
+.bitcoin-chain-back-arrow, .bitcoin-chain-close-icon {
+  font-size: 20px;
+  color: #666;
+  cursor: pointer;
+}
+
+.bitcoin-chain-withdraw-section {
+  margin-bottom: 20px;
+}
+
+.bitcoin-chain-withdraw-section label {
+  display: block;
+  font-size: 14px;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.bitcoin-chain-withdraw-section input, .bitcoin-chain-withdraw-section select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+.bitcoin-chain-amount-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.bitcoin-chain-amount-input-wrapper input {
+  padding-right: 80px;
+}
+
+.bitcoin-chain-currency {
+  position: absolute;
+  right: 50px;
+  font-size: 14px;
+  color: #666;
+}
+
+.bitcoin-chain-max-btn {
+  position: absolute;
+  right: 10px;
+  background-color: #f0f0f0;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 12px;
+  color: #333;
+  cursor: pointer;
+}
+
+.bitcoin-chain-available-balance {
+  font-size: 12px;
+  color: #666;
+  margin-top: 5px;
+}
+
+.bitcoin-chain-warning-message {
+  background-color: #fff9e6;
+  border-radius: 5px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.bitcoin-chain-warning-icon {
+  background-color: #ffcc00;
+  color: #fff;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 10px;
+  font-size: 14px;
+}
+
+.bitcoin-chain-warning-message p {
+  margin: 0;
+  font-size: 12px;
+  color: #333;
+}
+
+.bitcoin-chain-receiving-amount {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  color: #333;
+}
+
+.bitcoin-chain-receiving-amount p:last-child {
+  text-align: right;
+}
+
+/* Responsive Design */
+@media (max-width: 760px) {
+  #bitcoinwithdrawalinformationpage {
+      width: 80%;
+  }
+}
+
+@media (max-width: 480px) {
+  #bitcoinwithdrawalinformationpage {
+      width: 90%;
+      padding: 15px;
+  }
+
+  .bitcoin-chain-withdraw-header h2 {
+      font-size: 16px;
+  }
+
+  .bitcoin-chain-withdraw-section label {
+      font-size: 12px;
+  }
+
+  .bitcoin-chain-withdraw-section input, .bitcoin-chain-withdraw-section select {
+      font-size: 12px;
+      padding: 8px;
+  }
+
+  .bitcoin-chain-warning-message p {
+      font-size: 10px;
+  }
+
+  .bitcoin-chain-receiving-amount {
+      font-size: 12px;
+  }
+}
+/**/
+.withdrawalconfirmingpage-flexdiv{
+  display: flex;
+  justify-content: center;
+}
+.withdrawalconfirmingpage-blockdiv{
+  width: 80%;
+  padding: 20px;
+}
+.withdrawalconfirmingpage-center-p{
+  display: flex;
+  justify-content: center;
+}
+.withdrawalconfirmingpage-icon-p{
+  font-size: 50px;
+  margin-bottom: 0;
+  color: rgb(0, 0, 78);
+}
+.withdrawalconfirmingpage-name-p{
+  font-weight: bold;
+  margin-top: 0;
+}
+.withdrawalconfirmingpage-amount-p{
+  font-size: 30px;
+  font-weight: bold;
+  margin-bottom: 0;
+}
+.withdrawalconfirmingpage-amount-p .usd{
+  font-size: 14px;
+}
+.withdrawalconfirmingpage-usd-p{
+  font-size: 12px;
+  font-weight: bold;
+  color: rgb(0, 71, 143);
+  margin-top: 0;
+}
+.inher-notice-flex{
+  display: flex;
+  justify-content: center;
+}
+.inher-notice{
+  border-radius: 5px;
+  padding: 20px;
+  width: 40%;
+}
+.inher-from-p{
+  font-size: 13px;
+  color: rgb(126, 126, 126);
+}
+.inher-infoflex{
+  display: flex;
+}
+.in-banlance-p{
+  font-weight: bold;
+}
+.withdrawing-from-to-iconp{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+}
+.in-balanceicon{
+  font-size: 50px;
+  margin: 0;
+  padding: 0;
+  border: 1px solid rgb(133, 133, 133);
+  display: flex;
+  justify-content: center;
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+  align-items: center;
+}
+@media screen and (max-width: 400px){
+  .withdrawmoneywith-blockdiv{
+      width: 90%;
+  }
+  .withdrawinformationpage-blockdiv{
+      width: 90%;
+  }
+  .withdrawinformationpage-blockdiv{
+      width: 90%;
+      padding: 20px;
+  }
+  .inher-notice{
+      width: 100%;
+  }
+}
+@media screen and (max-width: 469px){
+  .withdrawinformationpayoutmethod-amounttitle-div input{
+      width: 80%;
+  }
+}
+#withdrawalreceiptpage {
+  width: 50%;
+  padding: 20px;
+  margin: 20px auto;
+  box-sizing: border-box;
+}
+
+.paypal-cashappwithdrawalreceipt-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.paypal-cashappwithdrawalreceipt-header h2 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+}
+
+.paypal-cashappwithdrawalreceipt-section {
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.paypal-cashappwithdrawalreceipt-label {
+  font-size: 14px;
+  color: #666;
+  font-weight: bold;
+}
+
+.paypal-cashappwithdrawalreceipt-value {
+  font-size: 14px;
+  color: #333;
+  margin: 0;
+}
+
+#receipt-amount-value {
+  font-weight: bold;
+}
+
+#receipt-status {
+  color: #28a745; /* Green for "Completed" status */
+}
+
+/* Responsive Design */
+@media (max-width: 760px) {
+  #withdrawalreceiptpage {
+      width: 80%;
+  }
+}
+
+@media (max-width: 480px) {
+  #withdrawalreceiptpage {
+      width: 90%;
+      padding: 15px;
+  }
+
+  .paypal-cashappwithdrawalreceipt-header h2 {
+      font-size: 16px;
+  }
+
+  .paypal-cashappwithdrawalreceipt-label, .paypal-cashappwithdrawalreceipt-value {
+      font-size: 12px;
+  }
+}#transactionhistorypage {
+  margin: 20px auto;
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 15px;
+  box-sizing: border-box;
+}
+
+.paypal-cashapphistory-header {
+  margin-bottom: 20px;
+}
+
+.paypal-cashapphistory-status {
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+  margin: 0;
+}
+
+.paypal-cashapphistory-toggle {
+  width: 60%;
+  margin-top: 10px;
+  display: flex;
+}
+
+.toggle-button {
+  flex: 1; /* Allow buttons to shrink equally to fit the row */
+  padding: 5px 0px; /* Base padding */
+  background: none; /* No background for non-active buttons */
+  border: none; /* No border for non-active buttons */
+  font-size: 14px; /* Base font size */
+  color: #666;
+  cursor: pointer;
+  transition: color 0.3s, border-bottom 0.3s;
+  text-align: center; /* Center the text within the button */
+}
+
+.toggle-button.active {
+  background: none; /* No background for active button */
+  color: #0070ba; /* Blue text for active state */
+  border-bottom: 2px solid #0070ba; /* Bottom border for active button */
+}
+
+.toggle-button:not(.active) {
+  background: none; /* Ensure no background */
+  color: #666;
+  border-bottom: none; /* No bottom border for non-active */
+}
+
+.toggle-button:hover:not(.active) {
+  color: #333; /* Slightly darker text on hover for non-active */
+}
+
+.paypal-cashapphistory-no-records {
+  font-size: 14px;
+  color: #666;
+  text-align: center;
+  margin: 20px 0;
+}
+
+.paypal-cashapphistory-transaction-list {
+  display: none;
+}
+
+.paypal-cashapphistory-transaction-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.paypal-cashapphistory-transaction-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  color: #fff;
+  margin-right: 10px;
+}
+
+.paypal-cashapphistory-transaction-icon.paypal {
+  background-color: #0070ba; /* PayPal blue */
+}
+
+.paypal-cashapphistory-transaction-icon.cashapp {
+  background-color: #00d64f; /* Cashapp green */
+}
+
+.paypal-cashapphistory-transaction-details {
+  flex-grow: 1;
+}
+
+.paypal-cashapphistory-transaction-name {
+  font-size: 14px;
+  font-weight: bold;
+  color: #333;
+  margin: 0;
+}
+
+.paypal-cashapphistory-transaction-date {
+  font-size: 12px;
+  color: #666;
+  margin: 2px 0 0 0;
+}
+
+.paypal-cashapphistory-transaction-description {
+  font-size: 12px;
+  color: #666;
+  margin: 2px 0 0 0;
+}
+
+.paypal-cashapphistory-transaction-amount {
+  font-size: 14px;
+  font-weight: bold;
+  color: #28a745; /* Green for positive amounts */
+}
+
+.paypal-cashapphistory-transaction-amount.negative {
+  color: #dc3545; /* Red for negative amounts */
+}
+
+.paypal-cashapphistory-month-divider {
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+  margin: 20px 0 10px 0;
+}
+
+/* Responsive Design */
+@media (max-width: 868px) {
+  .paypal-cashapphistory-toggle {
+    gap: 6px; /* Reduce gap */
+  }
+
+  .toggle-button {
+    padding: 6px 8px; /* Reduce padding */
+    font-size: 12px; /* Reduce font size */
+  }
+}
+
+@media (max-width: 480px) {
+  #transactionhistorypage {
+    padding: 10px;
+  }
+
+  .paypal-cashapphistory-status {
+    font-size: 14px;
+  }
+
+  .paypal-cashapphistory-toggle {
+    gap: 4px; /* Further reduce gap */
+  }
+
+  .toggle-button {
+    padding: 2px; /* Further reduce padding */
+    font-size: 10px; /* Smaller font */
+  }
+
+  .toggle-button.active {
+    border-bottom: 1px solid #0070ba; /* Slightly thinner border for smaller screens */
+  }
+
+  .paypal-cashapphistory-transaction-item {
+    padding: 8px 0;
+  }
+
+  .paypal-cashapphistory-transaction-icon {
+    width: 35px;
+    height: 35px;
+    font-size: 16px;
+  }
+
+  .paypal-cashapphistory-transaction-name {
+    font-size: 12px;
+  }
+
+  .paypal-cashapphistory-transaction-date,
+  .paypal-cashapphistory-transaction-description {
+    font-size: 10px;
+  }
+
+  .paypal-cashapphistory-transaction-amount {
+    font-size: 12px;
+  }
+
+  .paypal-cashapphistory-month-divider {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 200px) {
+  .paypal-cashapphistory-toggle {
+    gap: 2px; /* Minimal gap for very small screens */
+  }
+
+  .toggle-button {
+    padding: 2px; /* Minimal padding */
+    font-size: 8px; /* Very small font */
+  }
+
+  .toggle-button.active {
+    border-bottom: 1px solid #0070ba; /* Keep border thin */
+  }
+
+  .paypal-cashapphistory-status {
+    font-size: 12px;
+  }
 }

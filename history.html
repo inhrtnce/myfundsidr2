@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transaction History</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="transactionhistorypage">
+        <div class="paypal-cashapphistory-header">
+            <div class="paypal-cashapphistory-toggle">
+                <button id="bank-toggle" class="withdrawinformation-balancetitle-button" onclick="dashboardHomePage()"><i class="fa-solid fa-arrow-left"></i></button>
+                <button id="bank-toggle" class="toggle-button" onclick="bankHistory()">Bank</button>
+                <button id="meta-toggle" class="toggle-button" style="display: none;">Meta</button>
+                <button id="paypal-toggle" class="toggle-button active">PayPal</button>
+                <button id="cashapp-toggle" class="toggle-button">Cashapp</button>
+                <button id="blockchain-toggle" class="toggle-button">Blockchain</button>
+            </div>
+        </div>
+
+<!------------>
+        <div id="bank-transactions" style="display: none;">
+            <p class="paypal-cashapphistory-status">Completed</p>
+            <p id="meta-no-records" class="paypal-cashapphistory-no-records">No Bank Transaction records yet</p>
+            <div id="bank-transaction-list" class="paypal-cashapphistory-transaction-list"></div>
+        </div>
+
+
+<!------->
+        <div id="meta-transactions" style="display: none;">
+            <p class="paypal-cashapphistory-status">Completed</p>
+            <p id="meta-no-records" class="paypal-cashapphistory-no-records">No Meta Transaction records yet</p>
+            <div id="meta-transaction-list" class="paypal-cashapphistory-transaction-list"></div>
+        </div>
+<!------->
+        <div id="paypal-transactions">
+            <p class="paypal-cashapphistory-status">Completed</p>
+            <p id="paypal-no-records" class="paypal-cashapphistory-no-records">No PayPal records yet</p>
+            <div id="paypal-transaction-list" class="paypal-cashapphistory-transaction-list"></div>
+        </div>
+<!------->
+        <div id="cashapp-transactions" style="display: none;">
+            <p class="paypal-cashapphistory-status">Completed</p>
+            <p id="cashapp-no-records" class="paypal-cashapphistory-no-records">No Cashapp records yet</p>
+            <div id="cashapp-transaction-list" class="paypal-cashapphistory-transaction-list"></div>
+        </div>
+<!------->
+        <div id="blockchain-transactions" style="display: none;">
+            <p class="paypal-cashapphistory-status">Completed</p>
+            <p id="blockchain-no-records" class="paypal-cashapphistory-no-records">No Blockchain records yet</p>
+            <div id="blockchain-transaction-list" class="paypal-cashapphistory-transaction-list"></div>
+        </div>
+    </div>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    // Get all toggle buttons
+    const bankToggle = document.getElementById('bank-toggle');
+    const metaToggle = document.getElementById('meta-toggle');
+    const paypalToggle = document.getElementById('paypal-toggle');
+    const cashappToggle = document.getElementById('cashapp-toggle');
+    const blockchainToggle = document.getElementById('blockchain-toggle');
+
+    // Get all transaction divs
+    const bankTransactionsDiv = document.getElementById('bank-transactions');
+    const metaTransactionsDiv = document.getElementById('meta-transactions');
+    const paypalTransactionsDiv = document.getElementById('paypal-transactions');
+    const cashappTransactionsDiv = document.getElementById('cashapp-transactions');
+    const blockchainTransactionsDiv = document.getElementById('blockchain-transactions');
+
+    // Get transaction lists and no-records messages
+    const paypalTransactionList = document.getElementById('paypal-transaction-list');
+    const cashappTransactionList = document.getElementById('cashapp-transaction-list');
+    const paypalNoRecords = document.getElementById('paypal-no-records');
+    const cashappNoRecords = document.getElementById('cashapp-no-records');
+
+    let paypalTransactions = [];
+    let cashappTransactions = [];
+
+    // Function to format numbers with commas
+    const formatAmount = (amount) => {
+        return amount.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    };
+
+    // Retrieve PayPal transactions
+    for (let i = 1; i <= 10; i++) {
+        const prefix = `paypaltransaction${i}`;
+        const name = localStorage.getItem(`${prefix}name`);
+        const amount = localStorage.getItem(`${prefix}amount`);
+        const datetime = localStorage.getItem(`${prefix}datetime`);
+        const method = localStorage.getItem(`${prefix}method`);
+
+        if (name && amount && datetime && method) {
+            paypalTransactions.push({
+                name,
+                amount: parseFloat(amount),
+                datetime,
+                method,
+                slot: i,
+                type: 'paypal'
+            });
+        }
+    }
+
+    // Retrieve Cashapp transactions
+    for (let i = 1; i <= 10; i++) {
+        const prefix = `cashapptransaction${i}`;
+        const name = localStorage.getItem(`${prefix}name`);
+        const amount = localStorage.getItem(`${prefix}amount`);
+        const datetime = localStorage.getItem(`${prefix}datetime`);
+        const method = localStorage.getItem(`${prefix}method`);
+
+        if (name && amount && datetime && method) {
+            cashappTransactions.push({
+                name,
+                amount: parseFloat(amount),
+                datetime,
+                method,
+                slot: i,
+                type: 'cashapp'
+            });
+        }
+    }
+
+    // Sort transactions by slot in descending order (latest at the top)
+    paypalTransactions.sort((a, b) => b.slot - a.slot);
+    cashappTransactions.sort((a, b) => b.slot - a.slot);
+
+    // Function to render transactions
+    const renderTransactions = (transactions, transactionList, noRecordsMessage) => {
+        if (transactions.length === 0) {
+            noRecordsMessage.style.display = 'block';
+            transactionList.style.display = 'none';
+            return;
+        }
+
+        noRecordsMessage.style.display = 'none';
+        transactionList.style.display = 'block';
+
+        const transactionsByMonth = {};
+        transactions.forEach(transaction => {
+            const dateParts = transaction.datetime.split(' ')[1].split(':');
+            const day = parseInt(dateParts[0]);
+            const month = parseInt(dateParts[1]) - 1;
+            const year = new Date().getFullYear();
+            const transactionDate = new Date(year, month, day);
+            const monthYear = transactionDate.toLocaleString('default', { month: 'long', year: 'numeric' });
+
+            if (!transactionsByMonth[monthYear]) {
+                transactionsByMonth[monthYear] = [];
+            }
+            transactionsByMonth[monthYear].push(transaction);
+        });
+
+        const sortedMonths = Object.keys(transactionsByMonth).sort((a, b) => {
+            const dateA = new Date(a);
+            const dateB = new Date(b);
+            return dateB - dateA;
+        });
+
+        transactionList.innerHTML = ''; // Clear previous content
+        for (const monthYear of sortedMonths) {
+            const monthTransactions = transactionsByMonth[monthYear];
+            monthTransactions.sort((a, b) => b.slot - a.slot);
+
+            const divider = document.createElement('p');
+            divider.className = 'paypal-cashapphistory-month-divider';
+            divider.innerText = monthYear;
+            transactionList.appendChild(divider);
+
+            monthTransactions.forEach(transaction => {
+                const transactionItem = document.createElement('div');
+                transactionItem.className = 'paypal-cashapphistory-transaction-item';
+
+                const iconDiv = document.createElement('div');
+                iconDiv.className = `paypal-cashapphistory-transaction-icon ${transaction.method.toLowerCase()}`;
+                const initials = transaction.name.split(' ').map(word => word[0]).join('').substring(0, 2).toUpperCase();
+                iconDiv.innerText = initials;
+                transactionItem.appendChild(iconDiv);
+
+                const detailsDiv = document.createElement('div');
+                detailsDiv.className = 'paypal-cashapphistory-transaction-details';
+
+                const nameP = document.createElement('p');
+                nameP.className = 'paypal-cashapphistory-transaction-name';
+                nameP.innerText = transaction.name;
+                detailsDiv.appendChild(nameP);
+
+                const dateP = document.createElement('p');
+                dateP.className = 'paypal-cashapphistory-transaction-date';
+                const dateParts = transaction.datetime.split(' ')[1].split(':');
+                const day = parseInt(dateParts[0]);
+                const month = new Date(2023, parseInt(dateParts[1]) - 1).toLocaleString('default', { month: 'short' });
+                dateP.innerText = `${day} ${month}`;
+                detailsDiv.appendChild(dateP);
+
+                const descriptionP = document.createElement('p');
+                descriptionP.className = 'paypal-cashapphistory-transaction-description';
+                descriptionP.innerText = transaction.method === 'Paypal' ? 'Transfer to PayPal' : 'Transfer to Cashapp';
+                detailsDiv.appendChild(descriptionP);
+
+                transactionItem.appendChild(detailsDiv);
+
+                const amountP = document.createElement('p');
+                amountP.className = 'paypal-cashapphistory-transaction-amount';
+                amountP.innerText = `+$${formatAmount(transaction.amount)} USD`;
+                transactionItem.appendChild(amountP);
+
+                transactionList.appendChild(transactionItem);
+            });
+        }
+    };
+
+    // Render initial transactions (only for PayPal and Cashapp since others have no records)
+    renderTransactions(paypalTransactions, paypalTransactionList, paypalNoRecords);
+    renderTransactions(cashappTransactions, cashappTransactionList, cashappNoRecords);
+
+    // Function to hide all transaction divs
+    const hideAllTransactions = () => {
+        bankTransactionsDiv.style.display = 'none';
+        metaTransactionsDiv.style.display = 'none';
+        paypalTransactionsDiv.style.display = 'none';
+        cashappTransactionsDiv.style.display = 'none';
+        blockchainTransactionsDiv.style.display = 'none';
+    };
+
+    // Function to remove 'active' class from all buttons
+    const removeActiveClass = () => {
+        bankToggle.classList.remove('active');
+        metaToggle.classList.remove('active');
+        paypalToggle.classList.remove('active');
+        cashappToggle.classList.remove('active');
+        blockchainToggle.classList.remove('active');
+    };
+
+    // Toggle functionality for each button
+    bankToggle.addEventListener('click', () => {
+        hideAllTransactions();
+        bankTransactionsDiv.style.display = 'block';
+        removeActiveClass();
+        bankToggle.classList.add('active');
+    });
+
+    metaToggle.addEventListener('click', () => {
+        hideAllTransactions();
+        metaTransactionsDiv.style.display = 'block';
+        removeActiveClass();
+        metaToggle.classList.add('active');
+    });
+
+    paypalToggle.addEventListener('click', () => {
+        hideAllTransactions();
+        paypalTransactionsDiv.style.display = 'block';
+        removeActiveClass();
+        paypalToggle.classList.add('active');
+    });
+
+    cashappToggle.addEventListener('click', () => {
+        hideAllTransactions();
+        cashappTransactionsDiv.style.display = 'block';
+        removeActiveClass();
+        cashappToggle.classList.add('active');
+    });
+
+    blockchainToggle.addEventListener('click', () => {
+        hideAllTransactions();
+        blockchainTransactionsDiv.style.display = 'block';
+        removeActiveClass();
+        blockchainToggle.classList.add('active');
+    });
+});
+</script>
+<script>
+function dashboardHomePage(){
+  location.href = 'dashboard.html'
+  localStorage.removeItem("banktransactionshistory")
+  localStorage.removeItem("menunavigationstoretrack")
+  localStorage.removeItem("withdrawtobank")
+}
+function bankHistory(){
+    localStorage.setItem('banktransactionshistory','banktransactionshistory')
+    location.href = 'dashboard.html'
+}
+</script>
+</body>
+</html>

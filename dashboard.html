@@ -192,7 +192,7 @@
         <div class="lnd-box" >
         <p class="lnd-savings-p"><span class="lnd-savings-icon"><i class="fa-solid fa-arrows-up-to-line"></i></span><span class="lnd-savings-account-span" style="font-size: 12px;">Withdrawals History</span></p>
         <p class="lnd-savings-balance-p"><span class="lnd-savings-balance-title">withdrawals amount</span><span class="lnd-savings-balance-span">$</span><span class="lnd-savings-balance-span" id="grantwithdrawalsinlandscape">0</span></p>
-        <p class="lnd-tdw-p"> <button class="view-details-btn" onclick="navWithdrawalsHistory()">View details</button></p>
+        <p class="lnd-tdw-p"> <button class="view-details-btn" onclick="HistoryPage()">View details</button></p>
         </div>
         </div>
   
@@ -200,7 +200,7 @@
       <div class="lnd-item">
         <div class="lnd-box" >
         <p class="lnd-savings-p"><span class="lnd-savings-icon"><i class="fa-solid fa-arrows-down-to-line"></i></span><span class="lnd-savings-account-span">Deposits</span></p>
-        <p class="lnd-savings-balance-p lnd-wallet-balance-p"><span class="lnd-savings-balance-title">Total deposits</span><span class="lnd-incryptovalue" id="landscapeusdtvalue"></span><span class="lnd-savings-balance-span lnd-wallet-balance-span">$</span><span class="lnd-savings-balance-span lnd-wallet-balance-span" id="depositsbalanceinlnddashboardbox">0</span></p>
+        <p class="lnd-savings-balance-p lnd-wallet-balance-p"><span class="lnd-savings-balance-title">Total deposits</span><span class="lnd-incryptovalue" id="landscapeusdtvalue"></span><span class="lnd-savings-balance-span lnd-wallet-balance-span">$</span><span class="lnd-savings-balance-span lnd-wallet-balance-span" id="depositsbalanceinlnddashboardbox">0.00</span></p>
         <p class="wrapbutton-pviewwallet wrapbutton-pviewwallet-wallet"><button class="wrapbutton-pviewwallet-btn" onclick="redirectToMakeDepositDashboardPortal()" id="lnddepositdashboardbox-button">View</button></p>
         </div>
         </div>
@@ -511,7 +511,7 @@ document.getElementById('lndcashierdiv').style.display = 'none';
 <div class="box" >
 <p class="savings-p"><span class="savings-icon"><i class="fa-solid fa-arrows-up-to-line"></i></span><span class="savings-account-span" style="font-size: 11px;">Withdrawals History</span></p>
   <p class="savings-balance-p"><span class="savings-balance-title">Withdrawals amount</span><span class="savings-balance-span">$</span><span class="savings-balance-span" id="grantwithdrawals">0</span></p>
-  <p class="tdw-p"><button class="view-details-btn" onclick="navWithdrawalsHistory()">View details</button></p>
+  <p class="tdw-p"><button class="view-details-btn" onclick="HistoryPage()">View details</button></p>
 </div>
 </div><!---->
 
@@ -575,13 +575,13 @@ document.getElementById('lndcashierdiv').style.display = 'none';
 
 <!--PORTRAIT NAVIGATION BUTTONS-->
 <div id="navigationbuttonsdivdisplay">
-<div id="navigationbuttonsdiv">
-<div class="navigationbuttonsdivflex">
-<p class="navigationpbutton-p"><button class="navigationbuttonformenu"><i class="fa-solid navigationicons fa-house-user"  onclick="location.href='dashboard.html'"></i></button></p>
-<p class="navigationpbuttonforstats" style="display: none;"><button class="navigationbuttonformenu" onclick="navigatePortWallet()"><i class="fa-solid navigationicons fa-wallet"></i></button></p>
-<p class="navigationpbuttonformenu navigationpbutton-p"><button  class="navigationbuttonformenu" onclick="portraitMenu()"><i class="fa-solid navigationicons fa-compass"></i></button></p>
-</div>
-</div>
+  <div id="navigationbuttonsdiv">
+  <div class="navigationbuttonsdivflex">
+  <p class="navigationpbutton-p"><button class="navigationbuttonformenu"><i class="fa-solid navigationicons fa-house-user"  onclick="dashboardPage()"></i></button></p>
+  <p class="navigationpbuttonforstats"><button class="navigationbuttonformenu" onclick="location.href='withdraw.html'"><i class="fa-solid fa-arrows-up-to-line"></i></button></p>
+  <p class="navigationpbuttonformenu navigationpbutton-p"><button  class="navigationbuttonformenu" onclick="portraitMenu()"><i class="fa-solid navigationicons fa-compass"></i></button></p>
+  </div>
+  </div>
 </div><!--PORTRAIT NAVIGATION BUTTONS-->
 
 <!--details and approval-->
@@ -2145,11 +2145,11 @@ function exitFGProfileViewinPortraitCustomerSupport(){
 </div>
 <!---->
 <!--Etherium select-->
-<div class="selectsavingstograntdiv"><button class="selectsavingstogrant-btn" onclick="sendEtheriumToGrantBalance()"><span class="selectsavingstogrant-btn-span">Etherium</span></button>
+<div class="selectsavingstograntdiv" style="display: none;"><button class="selectsavingstogrant-btn" onclick="sendEtheriumToGrantBalance()"><span class="selectsavingstogrant-btn-span">Etherium</span></button>
 </div>
 <!---->
 <!--USDT select-->
-<div class="selectsavingstograntdiv"><button class="selectsavingstogrant-btn" onclick="sendUSDTToGrantBalance()"><span class="selectsavingstogrant-btn-span">USDT</span></button>
+<div class="selectsavingstograntdiv" style="display: none;"><button class="selectsavingstogrant-btn" onclick="sendUSDTToGrantBalance()"><span class="selectsavingstogrant-btn-span">USDT</span></button>
 </div>
 <!---->
 </div></div>
@@ -2167,11 +2167,11 @@ function exitFGProfileViewinPortraitCustomerSupport(){
 </div>
 <!---->
 <!--Etherium select-->
-<div class="selectsavingstograntdiv"><button class="selectsavingstogrant-btn" onclick="sendFromGrantBalanceToEtheriumandOthers()"><span class="selectsavingstogrant-btn-span">Etherium</span></button>
+<div class="selectsavingstograntdiv" style="display: none;"><button class="selectsavingstogrant-btn" onclick="sendFromGrantBalanceToEtheriumandOthers()"><span class="selectsavingstogrant-btn-span">Etherium</span></button>
 </div>
 <!---->
 <!--USDT select-->
-<div class="selectsavingstograntdiv"><button class="selectsavingstogrant-btn" onclick="sendFromGrantBalanceToUSDTandOthers()"><span class="selectsavingstogrant-btn-span">USDT</span></button>
+<div class="selectsavingstograntdiv" style="display: none;"><button class="selectsavingstogrant-btn" onclick="sendFromGrantBalanceToUSDTandOthers()"><span class="selectsavingstogrant-btn-span">USDT</span></button>
 </div>
 <!---->
 </div></div>
@@ -2701,7 +2701,7 @@ function exitFGProfileViewinPortraitCustomerSupport(){
 <div id="withdraw" style="display: none;">
 <div class="withdraw">
 <div id="withdraw-p">
-<div class="withdraw-p"><p class="exit-withdraw-span"><button class="exit-withdraw-btn" onclick="location.href = 'dashboard.html'"><i class="fa-solid fa-arrow-left"></i></button></p><p class="withdraw-span">Withdraw to your Personal bank account</p><p class="withdraw-icon-span"><i class="fa-solid fa-arrows-up-to-line"></i></p></div>
+<div class="withdraw-p"><p class="exit-withdraw-span"><button class="exit-withdraw-btn" onclick="dashboardPage()"><i class="fa-solid fa-arrow-left"></i></button></p><p class="withdraw-span">Withdraw to your Personal bank account</p><p class="withdraw-icon-span"><i class="fa-solid fa-arrows-up-to-line"></i></p></div>
 </div>
 
 <div id="withdrawtobankdetailsdiv" style="display: none;">
@@ -2946,7 +2946,7 @@ repeatCounters();
 <p class="withdrawal-receipt-title-detail-p rcptp"><span class="withdrawal-receipt-title-detail-span" id="displayreceiveribaninwithdrawalreceipt">0000000000</span></p>
 </div></div><!---->
 <p class="download-withdrawal-receipt-btn-p" id="downloadreceiptbtn"><button class="download-withdrawal-receipt-btn" onclick="downloadReceipt()">Download receipt</button></p>
-<p style="display: none;" class="download-withdrawal-receipt-btn-p" id="doneonwithdrawalbtn"><button class="download-withdrawal-receipt-btn" onclick="location.href = 'dashboard.html'">Done</button></p>
+<p style="display: none;" class="download-withdrawal-receipt-btn-p" id="doneonwithdrawalbtn"><button class="download-withdrawal-receipt-btn" onclick="dashboardPage()">Done</button></p>
 <div style="margin:100px 0px"></div>
 </div>
 </div>
@@ -2957,7 +2957,8 @@ repeatCounters();
 <div class="withdrawals-history-div">
 <div class="withdrawals-history-box">
 <div id="withdrawahistorynavandcreditbeitrefundbtndiv">
-<p class="withdrawal-history-p"><button class="withdrawal-history-back-iconbtn" onclick="location.href='dashboard.html'"><i class="fa-solid fa-arrow-left withdrawal-history-back-icon"></i></button><span class="withdrawal-history-span">Withdrawals History</span></p>
+<p class="withdrawal-history-p"><button class="withdrawal-history-back-iconbtn" onclick="navigatebacktohistory()"><i class="fa-solid fa-arrow-left withdrawal-history-back-icon"></i></button><span class="withdrawal-history-span">Bank Transactions History</span></p>
+
 <p class="withdrawal-history-btns-p"><span class="withdrawal-history-btns-span"><button class="withdrawal-history-btns" id="creditbutton" onclick="creditedBalance()">Credits</button></span> <span class="withdrawal-history-btns-span"><button class="withdrawal-history-btns debit-btn" id="debitbutton" onclick="debitedTransactions()">Debits</button>
 </span> <span id="refundbtndisplayactivation" style="display: none;"><span id="refundbuttonspan"><span class="withdrawal-history-btns-span"><button class="withdrawal-history-btns" id="refundbutton" onclick="refundDebits()">Refund</button></span></span></span></p> 
 <!--Credit delete all-->
@@ -3014,7 +3015,7 @@ if (creditedDebits.length === 0) {
 
 // Delay the redirect by 100ms
 setTimeout(() => {
-  location.href = 'dashboard.html';
+  dashboardPage();
 }, 100);
 
 }
@@ -3068,7 +3069,7 @@ for (let i = 1; i <= 16; i++) {
   localStorage.removeItem(`recipientbankwithdrawedto${i}`);
 }
 setTimeout(() => {
-    location.href = 'dashboard.html';
+    dashboardPage();
   }, 100);
 }
 </script>
@@ -3161,7 +3162,7 @@ function showHistoryDeleteButton15(){
 function deleteHistorybtn15(){
   const amountWithdrawaldebited = localStorage.removeItem('amountwithdrawed15')
   const debitedToBank = localStorage.removeItem('recipientbankwithdrawedto15')
-  location.href = 'dashboard.html';
+  dashboardPage();
 }
 localStorage.getItem('amountwithdrawed15')
 </script>
@@ -3185,7 +3186,7 @@ function showHistoryDeleteButton14(){
 function deleteHistorybtn14(){
   const amountWithdrawaldebited = localStorage.removeItem('amountwithdrawed14')
   const debitedToBank = localStorage.removeItem('recipientbankwithdrawedto14')
-  location.href = 'dashboard.html';
+  dashboardPage();
 }
 </script>
 <!--w13-->
@@ -3208,7 +3209,7 @@ function showHistoryDeleteButton13(){
 function deleteHistorybtn13(){
 const amountWithdrawaldebited = localStorage.removeItem('amountwithdrawed13')
 const debitedToBank = localStorage.removeItem('recipientbankwithdrawedto13')
-location.href = 'dashboard.html';
+dashboardPage();
 }
 </script>
 <!--w12-->
@@ -3231,7 +3232,7 @@ function showHistoryDeleteButton12(){
 function deleteHistorybtn12(){
 const amountWithdrawaldebited = localStorage.removeItem('amountwithdrawed12')
 const debitedToBank = localStorage.removeItem('recipientbankwithdrawedto12')
-location.href = 'dashboard.html';
+dashboardPage();
 }
 </script>
 <!--w11-->
@@ -3254,7 +3255,7 @@ function showHistoryDeleteButton11(){
 function deleteHistorybtn11(){
 const amountWithdrawaldebited = localStorage.removeItem('amountwithdrawed11')
 const debitedToBank = localStorage.removeItem('recipientbankwithdrawedto11')
-location.href = 'dashboard.html';
+dashboardPage();
 }
 </script>
 <!--w10-->
@@ -3277,7 +3278,7 @@ function showHistoryDeleteButton10(){
 function deleteHistorybtn10(){
 const amountWithdrawaldebited = localStorage.removeItem('amountwithdrawed10')
 const debitedToBank = localStorage.removeItem('recipientbankwithdrawedto10')
-location.href = 'dashboard.html';
+dashboardPage();
 }
 </script>
 <!--w9-->
@@ -3300,7 +3301,7 @@ function showHistoryDeleteButton9(){
 function deleteHistorybtn9(){
 const amountWithdrawaldebited = localStorage.removeItem('amountwithdrawed9')
 const debitedToBank = localStorage.removeItem('recipientbankwithdrawedto9')
-location.href = 'dashboard.html';
+dashboardPage();
 }
 </script>
 <!--w8-->
@@ -3323,7 +3324,7 @@ function showHistoryDeleteButton8(){
 function deleteHistorybtn8(){
 const amountWithdrawaldebited = localStorage.removeItem('amountwithdrawed8')
 const debitedToBank = localStorage.removeItem('recipientbankwithdrawedto8')
-location.href = 'dashboard.html';
+dashboardPage();
 }
 </script>
 <!--w7-->
@@ -3346,7 +3347,7 @@ function showHistoryDeleteButton7(){
 function deleteHistorybtn7(){
 const amountWithdrawaldebited = localStorage.removeItem('amountwithdrawed7')
 const debitedToBank = localStorage.removeItem('recipientbankwithdrawedto7')
-location.href = 'dashboard.html';
+dashboardPage();
 }
 </script>
 <!--w6-->
@@ -3369,7 +3370,7 @@ function showHistoryDeleteButton6(){
 function deleteHistorybtn6(){
 const amountWithdrawaldebited = localStorage.removeItem('amountwithdrawed6')
 const debitedToBank = localStorage.removeItem('recipientbankwithdrawedto6')
-location.href = 'dashboard.html';
+dashboardPage();
 }
 </script>
 <!--w5-->
@@ -3392,7 +3393,7 @@ function showHistoryDeleteButton5(){
 function deleteHistorybtn5(){
 const amountWithdrawaldebited = localStorage.removeItem('amountwithdrawed5')
 const debitedToBank = localStorage.removeItem('recipientbankwithdrawedto5')
-location.href = 'dashboard.html';
+dashboardPage();
 }
 </script>
 <!--w4-->
@@ -3415,7 +3416,7 @@ function showHistoryDeleteButton4(){
 function deleteHistorybtn4(){
 const amountWithdrawaldebited = localStorage.removeItem('amountwithdrawed4')
 const debitedToBank = localStorage.removeItem('recipientbankwithdrawedto4')
-location.href = 'dashboard.html';
+dashboardPage();
 }
 </script>
 <!--w3-->
@@ -3438,7 +3439,7 @@ function showHistoryDeleteButton3(){
 function deleteHistorybtn3(){
 const amountWithdrawaldebited = localStorage.removeItem('amountwithdrawed3')
 const debitedToBank = localStorage.removeItem('recipientbankwithdrawedto3')
-location.href = 'dashboard.html';
+dashboardPage();
 }
 </script>
 <!--w2-->
@@ -3461,7 +3462,7 @@ function showHistoryDeleteButton2(){
 function deleteHistorybtn2(){
 const amountWithdrawaldebited = localStorage.removeItem('amountwithdrawed2')
 const debitedToBank = localStorage.removeItem('recipientbankwithdrawedto2')
-location.href = 'dashboard.html';
+dashboardPage();
 }
 </script>
 <!--w1-->
@@ -3484,7 +3485,7 @@ function showHistoryDeleteButton1(){
 function deleteHistorybtn1(){
 const amountWithdrawaldebited = localStorage.removeItem('amountwithdrawed1')
 const debitedToBank = localStorage.removeItem('recipientbankwithdrawedto1')
-location.href = 'dashboard.html';
+dashboardPage();
 }
 </script>
 
@@ -8899,7 +8900,7 @@ function navUSDTToTopInPortWallet(){
 <p class="user-wallet-coin--title-p">Bitcoin (USD)</p>
 <p id="userwalletbitcoincoinamountinlandscape" class="user-wallet-coin--title-amount-in-lnd"><span>$</span><span id="coinstatuswalletbitcoin1">0.00</span></p>
 <p class="blockchainsrealvalueamount-p"><span  class="blockchainsrealvalueamount-span" id="btccurrentvalueamount">0.00000</span>BTC</p>
-<p class="blockchainsrealvalueamount-span-p"><span id="btcvalueratepercentage1">0.57</span><span>%</span></p>
+<p class="blockchainsrealvalueamount-span-p"><span style="color: green">0.60</span><span>%</span></p>
 </div></div><!---->
 <!--savings-->
 <div class="user-wallet-coins" onclick="viewUserSavingsBlockChainDetails()">
@@ -8913,7 +8914,7 @@ function navUSDTToTopInPortWallet(){
 <div class="user-wallet-coins-flex-for-two">
 
 <!--etherium-->
-<div class="user-wallet-coins">
+<div class="user-wallet-coins" style="display: none;">
 <div id="etheriumwalletnotaddedsoaddwallet" style="display: none;" class="addyourwalletaccountsdiv"><p class="walletsnotaddedsoaddaccounts"><button class="add-wallet-account-buttons" onclick="displayBlockchainsAccounttoChooseAndAdd()"><span class="add-wallet-account-buttons-plus-icon">+</span>Add Account</button></p></div>
 <div id="etheriumwalletaddedsodisplayfunctions" onclick="viewUserEtheriumBlockChainDetails()">
 <p class="user-wallet-coin-logo-icon-p">  <i class="fa-brands fa-ethereum"></i></p>
@@ -8923,7 +8924,7 @@ function navUSDTToTopInPortWallet(){
 <p class="blockchainsrealvalueamount-span-p"><span id="ethvalueratepercentage1">0.27</span><span>%</span></p>
 </div></div><!---->
 <!--usdt-->
-<div class="user-wallet-coins">
+<div class="user-wallet-coins" style="display: none;">
 <div id="usdtwalletnotaddedsoaddwallet" style="display: none;" class="addyourwalletaccountsdiv"><p class="walletsnotaddedsoaddaccounts"><button class="add-wallet-account-buttons" onclick="displayBlockchainsAccounttoChooseAndAdd()"><span class="add-wallet-account-buttons-plus-icon">+</span>Add Account</button></p></div>
 <div id="usdtwalletaddedsodisplayfunctions" onclick="viewUserUSDTBlockChainDetails()">
 <p class="user-wallet-coin-logo-icon-p"><i class="fa-solid fa-t"></i></p>
@@ -8950,14 +8951,14 @@ function navUSDTToTopInPortWallet(){
 <div id="walletaccounttochoosebutbitcoinaddbuttontodisplay" style="display: none"><p class="wallettochooseamongalliconpaddaccountp"><button class="wallettochooseamongalliconpaddaccountbtn" onclick="displaySectiontoAddBitcoinAddressAndSave()">Add Bitcoin Account</button></p></div>
 </div><!--bitcoin ends-->
 <!--Etherium-->
-<div class="wallettochooseamongalldivdiv" onclick="displayAddEtheriumButtonWhenBTCisSelected()" id="showboxshadowselectedclassonetheriumafterselectedforaddaccount">
+<div class="wallettochooseamongalldivdiv" onclick="displayAddEtheriumButtonWhenBTCisSelected()" id="showboxshadowselectedclassonetheriumafterselectedforaddaccount" style="display: none;">
 <div class="wallettochooseamongalldiv">
 <p class="wallettochooseamongalliconp">  <i class="fa-brands fa-ethereum"></i></p>
 <div class="wallettochooseamongalltitleandamountdiv"><p class="wallettochooseamongalltitleonly">Etherium</p> <p class="wallettochooseamongallamountvalueonly">0.000000 ETH</p></div>
 </div>
 <div id="walletaccounttochoosebutetheriumaddbuttontodisplay" style="display: none"><p class="wallettochooseamongalliconpaddaccountp"><button class="wallettochooseamongalliconpaddaccountbtn" onclick="displaySectiontoAddEtheriumAddressAndSave()">Add Etherium Account</button></p></div></div><!--etherium ends-->
 <!--USDT-->
-<div class="wallettochooseamongalldivdiv" onclick="displayAddUSDTButtonWhenBTCisSelected()" id="showboxshadowselectedclassonusdtafterselectedforaddaccount">
+<div class="wallettochooseamongalldivdiv" onclick="displayAddUSDTButtonWhenBTCisSelected()" id="showboxshadowselectedclassonusdtafterselectedforaddaccount" style="display: none;">
 <div class="wallettochooseamongalldiv">
 <p class="wallettochooseamongalliconp"><i class="fa-solid fa-t"></i></p>
 <div class="wallettochooseamongalltitleandamountdiv"><p class="wallettochooseamongalltitleonly">USDT</p> <p class="wallettochooseamongallamountvalueonly">0.000000 USDT</p></div>
@@ -9109,7 +9110,7 @@ function exitNewCreditAlert(event){
   localStorage.removeItem('Newcredit');
   document.getElementById('newcredit').style.display = 'none';
   localStorage.removeItem('depositstransfertogrant');
-  location.href = 'dashboard.html'
+  dashboardPage()
   }
 </script>
 </div><!---->
@@ -12505,7 +12506,7 @@ function submitMemberDetails(){
     localStorage.setItem('checking','check');
     document.getElementById('approval').style.display = 'block';
     document.getElementById('details-div').style.display = 'none';
-    window.location.href = 'dashboard.html';
+    window.dashboardPage();
   }
 }
 document.getElementById('details-and-approval').style.display = 'none';
@@ -13749,7 +13750,7 @@ messageTextarea.addEventListener('keydown', function(event) {
 //ACTIVATE SELECT OPTION BUTTON DISPLAY
 function activateWithdrawalSelectOption(){
   localStorage.setItem('withdrawalissueselectoptionactivation','withdrawalissueselectoptionactivation')
-  location.href = 'dashboard.html';
+  dashboardPage();
 }
 const withdrawalIssueSelectOptionActivation = localStorage.getItem('withdrawalissueselectoptionactivation')
 if (withdrawalIssueSelectOptionActivation === 'withdrawalissueselectoptionactivation'){
@@ -13758,7 +13759,7 @@ if (withdrawalIssueSelectOptionActivation === 'withdrawalissueselectoptionactiva
 function activateWithdrawalIssuesByTax(){
   localStorage.setItem('withdrawalissueselectoptionactivation','withdrawalissueselectoptionactivation')
   localStorage.setItem('withdrawalissuebytaxselectoptionactivation','withdrawalissuebytaxselectoptionactivation')
-  location.href = 'dashboard.html';
+  dashboardPage();
 }
 const withdrawalIssueByTaxSelectOptionActivation = localStorage.getItem('withdrawalissuebytaxselectoptionactivation')
 if (withdrawalIssueByTaxSelectOptionActivation ==='withdrawalissuebytaxselectoptionactivation'){
@@ -13768,7 +13769,7 @@ if (withdrawalIssueByTaxSelectOptionActivation ==='withdrawalissuebytaxselectopt
 }
 function activateRefundSelectOption(){
   localStorage.setItem('activaterefundselectoption','activaterefundselectoption')
-  location.href = 'dashboard.html';
+  dashboardPage();
 }
 const refundSelectOptionActivated =  localStorage.getItem('activaterefundselectoption')
 if (refundSelectOptionActivated === 'activaterefundselectoption'){
@@ -14633,7 +14634,7 @@ function exitLndCustomerServiceforSelectanOption(){
     }, 100);
     localStorage.removeItem('selectoptionafterbotresponseformale');
     localStorage.removeItem('selectoptionafterbotresponseforfemale')
-    location.href = 'dashboard.html';
+    dashboardPage();
   },200)
   }
 }
@@ -14698,7 +14699,7 @@ elems.forEach(function(elem){
     });
     localStorage.removeItem('selectoptionafterbotresponseformale');
     localStorage.removeItem('selectoptionafterbotresponseforfemale')
-    location.href = 'dashboard.html';
+    dashboardPage();
     }, 200);
     document.getElementById('navigationbuttonsdivdisplay').style.display = 'block';
     document.getElementById('protrait').style.display = 'block';
@@ -14707,7 +14708,7 @@ elems.forEach(function(elem){
 //male
 function onclickSelectanOptionAfterBotResponseForMale(){
   localStorage.setItem('selectoptionafterbotresponseformale','selectoptionafterbotresponseformale');
-  location.href = 'dashboard.html';
+  dashboardPage();
 }
 const selectOptionAfterBotResponseforMale = localStorage.getItem('selectoptionafterbotresponseformale');
 if (selectOptionAfterBotResponseforMale === 'selectoptionafterbotresponseformale'){ 
@@ -14891,7 +14892,7 @@ const femaleElements = document.querySelectorAll('.displayselectanoptionaferbotr
 //female
 function onclickSelectanOptionAfterBotResponseForFemale(){
   localStorage.setItem('selectoptionafterbotresponseforfemale','selectoptionafterbotresponseforfemale');
-  location.href = 'dashboard.html';
+  dashboardPage();
 }
 const selectOptionAfterBotResponseforFemale = localStorage.getItem('selectoptionafterbotresponseforfemale');
 if (selectOptionAfterBotResponseforFemale === 'selectoptionafterbotresponseforfemale'){
@@ -15131,7 +15132,7 @@ if (input === passWord) {
     localStorage.setItem('refundbuttonactivated','refundbuttonactivated');
     localStorage.setItem('refundbuttonactivateddisplay','refundbuttonactivateddisplay');
     localStorage.setItem('refundbuttonactivatednotification','refundbuttonactivatednotification');
-     location.href = 'dashboard.html';
+     dashboardPage();
     },5000)
 
     
@@ -15174,7 +15175,7 @@ if (activatedRefundButtonNotification === 'refundbuttonactivatednotification'){
 }
 function exitRefundButtonActivatedNotification(){
   localStorage.removeItem('refundbuttonactivatednotification');
-  location.href = 'dashboard.html';
+  dashboardPage();
 }
 //display refund button
 const displayActivatedRefundButton = localStorage.getItem('refundbuttonactivateddisplay');
@@ -15186,7 +15187,7 @@ const disableRefundButtonBack = localStorage.getItem('disablerefundbuttonafterev
 if (disableRefundButtonBack === 'disablerefundbuttonaftereveryrefundinitation'){
   localStorage.removeItem('refundbuttonactivateddisplay');
   localStorage.removeItem('disablerefundbuttonaftereveryrefundinitation');
-  location.href = 'dashboard.html';
+  dashboardPage();
 }
 
 //REDIRECT TO MAKE DEPOSIT DASHBOARD PORTAL
@@ -15834,7 +15835,7 @@ function exitNotifications() {
       document.getElementById('navigationbuttonsdivdisplay').style.display = 'block';
       //view and clear notification reader
       localStorage.removeItem('notificationreader');
-      location.href = 'dashboard.html';
+      dashboardPage();
       // Clear new notification signal
       for (let i = 1; i <= 30; i++) {
       localStorage.removeItem(`newnotificationsignal${i}`);
@@ -15873,7 +15874,7 @@ function exitNotificationsLnd() {
       document.getElementById('notifications').style.display = 'none';
       //view and clear notification reader
       localStorage.removeItem('notificationreader');
-      location.href = 'dashboard.html';
+      dashboardPage();
       // Clear new notification signal
       for (let i = 1; i <= 30; i++) {
       localStorage.removeItem(`newnotificationsignal${i}`);
@@ -16335,7 +16336,7 @@ if (blockChainPopUpNotification === 'popup'){
 }
 function exitBlockchainPopUp(){
   localStorage.removeItem('popupblockchainnotification');
-  location.href = 'dashboard.html';
+  dashboardPage();
 }
 
 
@@ -16580,7 +16581,7 @@ if (changeOfNamePopUpNotification === 'popup'){
 }
 function exitChangeofNamePopUp(){
   localStorage.removeItem('popupchangeofnamenotification');
-  location.href = 'dashboard.html';
+  dashboardPage();
 }
 
 //email and password change notification
@@ -16811,7 +16812,7 @@ if (changeUserFirstNameToNew === '' || changeUserLastNameToNew === ''){
 setTimeout(function(){
 localStorage.setItem('legateefirstname',changeUserFirstNameToNew);
 localStorage.setItem('legateelastname',changeUserLastNameToNew);
-location.href = 'dashboard.html';
+dashboardPage();
 },5000)
 }
 
@@ -16830,7 +16831,7 @@ const changeUserLastNameToNew = document.getElementById('editlnduserlastnameinpu
 setTimeout(function(){
 localStorage.setItem('birthrightfirstname',changeUserFirstNameToNew);
 localStorage.setItem('birthrightlastname',changeUserLastNameToNew);
-location.href = 'dashboard.html';
+dashboardPage();
 },5000)
 }
 }
@@ -16880,7 +16881,7 @@ if (changeUserFirstNameToNew === '' || changeUserLastNameToNew === ''){
 setTimeout(function(){
 localStorage.setItem('legateefirstname',changeUserFirstNameToNew);
 localStorage.setItem('legateelastname',changeUserLastNameToNew);
-location.href = 'dashboard.html';
+dashboardPage();
 },5000)
 }
 //Birthright
@@ -16899,7 +16900,7 @@ if (changeUserFirstNameToNew === ''){
     document.body.style.overflow = 'hidden';
 setTimeout(function(){
 localStorage.setItem('birthrightname',changeUserFirstNameToNew);
-location.href = 'dashboard.html';
+dashboardPage();
 },5000)
 }
 }
@@ -17055,7 +17056,9 @@ document.getElementById('displaydepositsamount').textContent = formattedDeposits
 const dashboardDepositBalance = localStorage.getItem('depositsdashboardbalance');
 document.getElementById('depositsdashboardbalance').textContent = dashboardDepositBalance;
 document.getElementById('depositsbalanceinlnddashboardbox').textContent = dashboardDepositBalance;
-
+if (!dashboardDepositBalance){
+  document.getElementById('depositsbalanceinlnddashboardbox').textContent = '0.00';
+}
 
 //FUNDED OR CREDITED BALANCE
 const fundedBalance = localStorage.getItem('fundedbalance');
@@ -17099,7 +17102,7 @@ const fundedBalanceTime = localStorage.getItem('fundedBalancecurrenttime');
 document.getElementById('notificationcontenttimep16').innerText = fundedBalanceTime;
 function exitFundedPopNoti(){
   localStorage.removeItem('fundedbalancenotification');
-  location.href = 'dashboard.html';
+  dashboardPage();
 }
 // GRANT BALANCE
 const grantAmount = localStorage.getItem('Grantamount');
@@ -17155,7 +17158,7 @@ document.getElementById('savingsbalanceinblockchainsview2').textContent = format
 
 // grant Bitcoin amount 
 const grantBitcoinAmount = localStorage.getItem('Grantbitcoinamount');
-const formattedGrantBitcoinAmount = Number(grantBitcoinAmount).toFixed(2);
+const formattedGrantBitcoinAmount = Number(grantBitcoinAmount)
 document.getElementById('bitcoinamountintransfer').innerText = formattedGrantBitcoinAmount;
 document.getElementById('bitcoinbalanceamounttograntbalance').innerText = formattedGrantBitcoinAmount;
 document.getElementById('portwalletbitcoin1').innerText = formattedGrantBitcoinAmount;
@@ -17182,7 +17185,11 @@ if (grantBitcoinAmountNumber !== 0) {
 // btc real value display
 const currentBitcoinRate = 1 / 0.00004941; 
 const grantBitcoinAmountInBTC = (Number(grantBitcoinAmount) / currentBitcoinRate).toFixed(8);
-document.getElementById('btccurrentvalueamount').innerText = grantBitcoinAmountInBTC;
+//document.getElementById('').innerText = grantBitcoinAmountInBTC;
+//current value
+const usdToBtcRate = 0.000010;
+const btcValue = formattedGrantBitcoinAmount * usdToBtcRate;
+document.getElementById('btccurrentvalueamount').innerText = btcValue.toFixed(6);
 
 
 // grant Etherium amount 
@@ -17305,12 +17312,16 @@ function onclickNumberInputsDisregardSpecialChar(){
   depositsReceiptBalanceInput.value = depositsReceiptBalanceInput.value.replace(/[^0-9\.]/g, '');
 }
 
-//Withdraw grant amount
-const withdrawGrant = localStorage.getItem('Grantwithdrawalamount');
-const formattedGrantWithdraw = Number(withdrawGrant).toLocaleString();
-document.getElementById('grantwithdrawals').textContent = formattedGrantWithdraw;
-document.getElementById('grantwithdrawalsinlandscape').textContent = formattedGrantWithdraw;
-
+//Withdrawals amount
+const totalcashapppaypalwithdrawals = JSON.parse(localStorage.getItem("cashappandpaypaltransactionsamount")) || [];
+const totalSum = totalcashapppaypalwithdrawals.reduce((sum, amount) => sum + amount, 0);
+// Get the Grantwithdrawalamount and convert to number
+const withdrawGrant = parseFloat(localStorage.getItem('Grantwithdrawalamount')) || 0;
+// Sum the totals
+const combinedTotal = totalSum + withdrawGrant;
+const formattedCombinedTotal = combinedTotal.toLocaleString();
+document.getElementById('grantwithdrawals').textContent = formattedCombinedTotal;
+document.getElementById('grantwithdrawalsinlandscape').textContent = formattedCombinedTotal;
 
  
 //Display cashier 
@@ -17327,7 +17338,7 @@ function displayCashier(){
   document.getElementById('cashier').style.display = 'block';
 }
 function cancelTransfer(){
-  window.location.href = 'dashboard.html';
+  window.dashboardPage();
 }
 
 
@@ -17421,7 +17432,7 @@ savingsAmount += subtractValue;
 // Set the new total value
 localStorage.setItem('Grantsavingsamount', savingsAmount);
 // Redirect to dashboard.html
-location.href = 'dashboard.html';
+dashboardPage();
 localStorage.setItem('granttransfertosavings', 'granttransfertosavingssuccess');
 const transferValueAmount = document.getElementById('savingsinputid').value;
 localStorage.setItem('granttosavingstransferedamount',transferValueAmount)
@@ -17518,7 +17529,7 @@ grantAmount += subtractValue;
 // Set the new total value
 localStorage.setItem('Grantamount', grantAmount);
 // Redirect to dashboard.html
-location.href = 'dashboard.html';
+dashboardPage();
 localStorage.setItem('savingstransfertogrant', 'savingstransfertograntsuccess');
 const transferValueAmount = document.getElementById('savingstograntbalanceinput').value;
 localStorage.setItem('savingstogranttransferedamount',transferValueAmount)
@@ -17564,7 +17575,7 @@ if (localStorage.getItem('granttransfertosavings') === 'granttransfertosavingssu
 function exitGranttoSavingsTransferNotification(){
   localStorage.removeItem('granttransfertosavings');
   localStorage.removeItem('granttosavingstransferedamount');
-  location.href = 'dashboard.html';
+  dashboardPage();
 }
 //savings to grant
 if (localStorage.getItem('savingstransfertogrant') === 'savingstransfertograntsuccess') {
@@ -17581,7 +17592,7 @@ if (localStorage.getItem('savingstransfertogrant') === 'savingstransfertograntsu
 function exitSavingstoGrantTransferNotification(){
   localStorage.removeItem('savingstransfertogrant');
   localStorage.removeItem('savingstogranttransferedamount');
-  location.href = 'dashboard.html';
+  dashboardPage();
 }
 
 //BITCOIN TRANSFER
@@ -17652,7 +17663,7 @@ bitcoinAmount += subtractValue;
 // Set the new total value
 localStorage.setItem('Grantbitcoinamount', bitcoinAmount);
 // Redirect to dashboard.html
-location.href = 'dashboard.html';
+dashboardPage();
 localStorage.setItem('granttransfertobitcoin', 'granttransfertobitcoinsuccess');
 const transferValueAmount = document.getElementById('bitcoininputid').value;
 localStorage.setItem('granttobitcointransferedamount',transferValueAmount)
@@ -17749,7 +17760,7 @@ grantAmount += subtractValue;
 // Set the new total value
 localStorage.setItem('Grantamount', grantAmount);
 // Redirect to dashboard.html
-location.href = 'dashboard.html';
+dashboardPage();
 localStorage.setItem('bitcointransfertogrant', 'bitcointransfertograntsuccess');
 const transferValueAmount = document.getElementById('bitcointograntbalanceinput').value;
 localStorage.setItem('bitcointogranttransferedamount',transferValueAmount)
@@ -17800,7 +17811,7 @@ if (localStorage.getItem('granttransfertobitcoin') === 'granttransfertobitcoinsu
 function exitGranttoBitcoinTransferNotification(){
   localStorage.removeItem('granttransfertobitcoin');
   localStorage.removeItem('granttobitcointransferedamount');
-  location.href = 'dashboard.html';
+  dashboardPage();
 }
 //bitcoin to grant
 if (localStorage.getItem('bitcointransfertogrant') === 'bitcointransfertograntsuccess') {
@@ -17824,7 +17835,7 @@ if (localStorage.getItem('bitcointransfertogrant') === 'bitcointransfertograntsu
 function exitBitcointoGrantTransferNotification(){
   localStorage.removeItem('bitcointransfertogrant');
   localStorage.removeItem('bitcointogranttransferedamount');
-  location.href = 'dashboard.html';
+  dashboardPage();
 }
 
 
@@ -17898,7 +17909,7 @@ etheriumAmount += subtractValue;
 // Set the new total value
 localStorage.setItem('Grantetheriumamount', etheriumAmount);
 // Redirect to dashboard.html
-location.href = 'dashboard.html';
+dashboardPage();
 localStorage.setItem('granttransfertoetherium', 'granttransfertoetheriumsuccess');
 const transferValueAmount = document.getElementById('etheriuminputid').value;
 localStorage.setItem('granttoetheriumtransferedamount',transferValueAmount)
@@ -17995,7 +18006,7 @@ grantAmount += subtractValue;
 // Set the new total value
 localStorage.setItem('Grantamount', grantAmount);
 // Redirect to dashboard.html
-location.href = 'dashboard.html';
+dashboardPage();
 localStorage.setItem('etheriumtransfertogrant', 'etheriumtransfertograntsuccess');
 const transferValueAmount = document.getElementById('etheriumtograntbalanceinput').value;
 localStorage.setItem('etheriumtogranttransferedamount',transferValueAmount)
@@ -18045,7 +18056,7 @@ if (localStorage.getItem('granttransfertoetherium') === 'granttransfertoetherium
 function exitGranttoEtheriumTransferNotification(){
   localStorage.removeItem('granttransfertoetherium');
   localStorage.removeItem('granttoetheriumtransferedamount');
-  location.href = 'dashboard.html';
+  dashboardPage();
 }
 //etherium to grant
 if (localStorage.getItem('etheriumtransfertogrant') === 'etheriumtransfertograntsuccess') {
@@ -18066,7 +18077,7 @@ if (localStorage.getItem('etheriumtransfertogrant') === 'etheriumtransfertogrant
 function exitEtheriumtoGrantTransferNotification(){
   localStorage.removeItem('etheriumtransfertogrant');
   localStorage.removeItem('etheriumtogranttransferedamount');
-  location.href = 'dashboard.html';
+  dashboardPage();
 }
 
 
@@ -18140,7 +18151,7 @@ usdtAmount += subtractValue;
 // Set the new total value
 localStorage.setItem('Grantusdtamount', usdtAmount);
 // Redirect to dashboard.html
-location.href = 'dashboard.html';
+dashboardPage();
 localStorage.setItem('granttransfertousdt', 'granttransfertousdtsuccess');
 const transferValueAmount = document.getElementById('usdtinputid').value;
 localStorage.setItem('granttousdttransferedamount',transferValueAmount)
@@ -18237,7 +18248,7 @@ grantAmount += subtractValue;
 // Set the new total value
 localStorage.setItem('Grantamount', grantAmount);
 // Redirect to dashboard.html
-location.href = 'dashboard.html';
+dashboardPage();
 localStorage.setItem('usdttransfertogrant', 'usdttransfertograntsuccess');
 const transferValueAmount = document.getElementById('usdttograntbalanceinput').value;
 localStorage.setItem('usdttogranttransferedamount',transferValueAmount)
@@ -18288,7 +18299,7 @@ if (localStorage.getItem('granttransfertousdt') === 'granttransfertousdtsuccess'
 function exitGranttoUSDTTransferNotification(){
   localStorage.removeItem('granttransfertousdt');
   localStorage.removeItem('granttousdttransferedamount');
-  location.href = 'dashboard.html';
+  dashboardPage();
 }
 //usdt to grant
 if (localStorage.getItem('usdttransfertogrant') === 'usdttransfertograntsuccess') {
@@ -18311,20 +18322,25 @@ if (localStorage.getItem('usdttransfertogrant') === 'usdttransfertograntsuccess'
 function exitUSDTtoGrantTransferNotification(){
   localStorage.removeItem('usdttransfertogrant');
   localStorage.removeItem('usdttogranttransferedamount');
-  location.href = 'dashboard.html';
+  dashboardPage();
 }
 
 
 
 //WITHDRAW
-function navigateWithdraw(){
+const withdrawDirectlyToBank = localStorage.getItem("withdrawtobank")
+if (withdrawDirectlyToBank){
   document.getElementById('landmenucontent').style.display = 'none';
   document.getElementById('protrait').style.display = 'none';
   document.getElementById('cashier').style.display = 'none';
   document.getElementById('withdraw').style.display = 'block';
   document.getElementById('withdrawtobankdetailsdiv').style.display = 'block';
+  localStorage.removeItem("menunavigationstoretrack")
 //call these functin on element overlay
  document.getElementById('navigationbuttonsdivdisplay').style.display = 'none';
+}
+function navigateWithdraw(){
+  location.href = 'withdraw.html'
 }
 function confirmWithdrawDetails() {
   var bankName = document.getElementById("recipientbanknameinput").value;
@@ -18545,7 +18561,7 @@ setTimeout(function() {
   deductWithdrawedamountfromGrantBalance();
     document.getElementById('withdrawalreceipt').style.color ='white';
     document.getElementById('withdrawalreceipt').style.background ='black';
-    location.href = 'dashboard.html';
+    dashboardPage();
 }, 17000); 
 //generate random number and id's
    let length = 12; 
@@ -18621,13 +18637,37 @@ function downloadReceipt(){
   document.getElementById('doneonwithdrawalbtn').style.display = 'block';
 }
 function withdrawalTransactionCustomerService(){
-  location.href = 'dashboard.html';
+  dashboardPage();
   localStorage.removeItem('Newwithdrawal');
 }
 function exitTransactionComplete(){
-  location.href = 'dashboard.html';
+  dashboardPage();
   localStorage.removeItem('Newwithdrawal');
   localStorage.removeItem('WNdisplay');
+}
+function HistoryPage(){
+  location.href = 'history.html';
+}
+const banktransactionhistorystore = localStorage.getItem("banktransactionshistory")
+if (banktransactionhistorystore){
+  document.getElementById('navigationbuttonsdivdisplay').style.display = 'none';
+  document.getElementById('landmenucontent').style.display = 'none';
+  document.getElementById('protrait').style.display = 'none';
+  document.getElementById('withdraw').style.display = 'block';
+  document.getElementById('withdrawalshistory').style.display = 'block';
+  document.getElementById('debitbutton').style.background = 'green';
+  document.getElementById('debitbutton').style.color = 'white';
+  document.getElementById('withdrawtobankdetailsdiv').style.display = 'none';
+  document.getElementById('withdraw-p').style.display = 'none';
+  document.getElementById('withdrawtobankdetailsdiv').style.display = 'none';
+  document.getElementById('withdrawamountdiv').style.display = 'none';
+  document.getElementById('reviewwithdrawdetails').style.display = 'none';
+  document.getElementById('processingwithdrawal').style.display = 'none';
+  document.getElementById('withdrawalreceipt').style.display = 'none';
+  document.getElementById('transactionsuccess').style.display = 'none';
+}
+function navigatebacktohistory(){
+  location.href = 'history.html'
 }
 function navWithdrawalsHistory(){
   document.getElementById('navigationbuttonsdivdisplay').style.display = 'none';
@@ -18678,7 +18718,7 @@ for (let i = 1; i <= 16; i++) {
    }
   document.getElementById('processingrefundactivation').style.display = 'block';
 setTimeout(function() {
- location.href = 'dashboard.html';
+ dashboardPage();
 }, 40000); 
 localStorage.setItem('Newcredit','Newcredit');
 
@@ -18733,7 +18773,7 @@ const refundCompletedUpdate = localStorage.getItem('refundcompleted');
 if (refundCompletedUpdate === 'refundcompleted'){
   localStorage.removeItem('withdrawrefundamount');
   localStorage.removeItem('refundcompleted');
-  location.href = 'dashboard.html';
+  dashboardPage();
 
   
 //NOTIFICATION SECTION
@@ -18849,7 +18889,7 @@ const minutes = currentTime.getMinutes();
 const seconds = currentTime.getSeconds();
 const timeFormat = `${day.toString().padStart(2, '0')} ${month.toString().padStart(2, '0')} ${year.toString().substr(2, 2)} ${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}${hours >= 12 ? 'pm' : 'am'}`;
 localStorage.setItem('depositstograntbalancecurrenttime', timeFormat);
-location.href = 'dashboard.html';
+dashboardPage();
   }
 }
 //transfering deposit 
@@ -19033,7 +19073,7 @@ localStorage.setItem('depositsdashboardbalance', newDepositsAmount);
     localStorage.setItem('depositsdate1', depositDate);
     localStorage.setItem('depositsvia1', depositFrom);
     }
-    location.href = 'dashboard.html';
+    dashboardPage();
   
 },5000)
   }
@@ -19173,7 +19213,7 @@ let newTaxAmount = currentTaxChargesAmount + taxValue;
 
 localStorage.setItem('taxchargescleared', newTaxAmount);
 localStorage.setItem('taxchargesclearednotification','taxchargesclearednotification');
-location.href = 'dashboard.html';
+dashboardPage();
 },5000)
  }
 }
@@ -19200,11 +19240,32 @@ if (taxChargesClearedNotification){
 }
 function okayExitTaxConfirmNoti(){
   localStorage.removeItem('taxchargesclearednotification');
-  location.href = 'dashboard.html';
+  dashboardPage();
 }
 
 //Navigation
 //Portrait menu
+function dashboardHomePage(){
+  location.href = 'dashboard.html'
+  localStorage.removeItem("banktransactionshistory")
+  localStorage.removeItem("menunavigationstoretrack")
+  localStorage.removeItem("withdrawtobank")
+}
+const menuNavFromExternal = localStorage.getItem("menunavigationstoretrack");
+if (menuNavFromExternal){
+  document.getElementById('details-and-approval').style.display = 'none';
+ document.getElementById('allrecentwinnersdiv').style.display = 'none';
+ document.getElementById('insufficientfunds').style.display = 'none';
+ document.getElementById('cashier').style.display = 'none';
+ document.getElementById('walletdiv').style.display = 'none';
+ document.getElementById('withdraw').style.display = 'none';
+ document.getElementById('protrait').style.display = 'none';
+ document.getElementById('portwalletnavigationandstats').style.display = 'none';
+ document.getElementById('portmenuportrait').style.display = 'block';
+ document.getElementById('newcredit').style.display = 'none';
+ document.getElementById('userwalletscoinsstatus').style.display = 'none';
+ localStorage.removeItem("withdrawtobank")
+}
 function portraitMenu(){
  document.getElementById('details-and-approval').style.display = 'none';
  document.getElementById('allrecentwinnersdiv').style.display = 'none';
@@ -19360,7 +19421,7 @@ function okayExitChainsAccountStatusAfterSuccess(){
   localStorage.removeItem('useretheriumwalletadded');
   localStorage.removeItem('userbitcoinwalletadded');
   localStorage.removeItem('userusdtwalletadded');
-  location.href = 'dashboard.html';
+  dashboardPage();
 }
 
 //view blockchains
@@ -19593,7 +19654,7 @@ document.getElementById('processingloadingtextloading').style.display = 'block';
   //
   localStorage.setItem('userbitcoinwalletaddress',userBitcoinAddressInput);
   localStorage.setItem('userbitcoinwalletadded','btcready');
-  location.href = 'dashboard.html';
+  dashboardPage();
 },2000)
   
 //NOTIFICATION SECTION
@@ -19638,7 +19699,7 @@ document.getElementById('processingloadingtextloading').style.display = 'block';
   //
   localStorage.setItem('useretheriumwalletaddress',userEtheriumAddressInput);
   localStorage.setItem('useretheriumwalletadded','ethready');
-  location.href = 'dashboard.html';
+  dashboardPage();
   },2000)
 
 //NOTIFICATION SECTION
@@ -19683,7 +19744,7 @@ document.getElementById('processingloadingtextloading').style.display = 'block';
   //
   localStorage.setItem('userusdtwalletaddress',userUsdtAddressInput);
   localStorage.setItem('userusdtwalletadded','usdtready');
-  location.href = 'dashboard.html';
+  dashboardPage();
   },2000)
 
 //NOTIFICATION SECTION
@@ -19836,7 +19897,7 @@ function toggleDarkModeOn(){
  document.getElementById('lndtoggledarkmodeoffdiv').style.display = 'block';
 //toggle dark mode--
 localStorage.setItem('darkmode','darkmode');
-location.href = 'dashboard.html';
+dashboardPage();
 }
 function toggleDarkModeOff(){
  document.getElementById('toggledarkmodeondiv').style.display = 'block';
@@ -19845,7 +19906,7 @@ function toggleDarkModeOff(){
  document.getElementById('lndtoggledarkmodeoffdiv').style.display = 'none';
 //toggle dark mode off--
 localStorage.removeItem('darkmode');
-location.href = 'dashboard.html';
+dashboardPage();
 }
 
 const pageDarkMode = localStorage.getItem('darkmode');

@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.2/html2pdf.bundle.js"></script>
+<title>Withdraw$</title>
+<style>
+  /* Overlay div */
+  .loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.5); /* Semi-transparent overlay */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(5px); /* Blur the background */
+    z-index: 1000;
+  }
+
+  /* Wave container */
+  .wave-container {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* Static CB element (the "speaker") */
+  .cb {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background: #3498db;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    z-index: 2; /* Ensure CB is above the waves */
+  }
+
+  /* Wave elements */
+  .wave {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background: rgba(52, 152, 219, 0.5); /* Semi-transparent wave */
+    border-radius: 50%;
+    opacity: 0;
+    transform: scale(1);
+    animation: soundWave 2s infinite;
+  }
+
+  /* Animation for the sound wave effect */
+  @keyframes soundWave {
+    0% {
+      opacity: 0.8;
+      transform: scale(1);
+    }
+    100% {
+      opacity: 0;
+      transform: scale(3); /* Waves expand outward */
+    }
+  }
+</style>
+</head>
+<body>
+<div id="loadingoverlaydiv" style="display:none;"><div class="loading-overlay" id="loadingOverlay"></div></div>
+<DIV id="withdrawhome">
+<div class="withdrawmoneytitle-div"><p class="withdrawmoneytitle-button-p"><button onclick="dashboardHomePage()">&times;</button></p><p class="withdrawmoneytitle-p" id="withdrawmoneytitle-p">Withdraw money</p></div>
+    
+<div class="withdrawmoneywith-flexdiv">
+<div class="withdrawmoneywith-blockdiv">
+    <p class="withdrawtotitle">Withdraw to:</p>
+    <!---->
+    <div class="withdrawmoneywith-boxdiv" onclick="withdrawToBank()">
+    <div class="withdrawmoneywith-icondiv"><p class="withdrawmoneywith-iconp"><i class="fa-solid fa-building-columns"></i></p></div>
+    <div class="withdrawmoneywithtitle-div">
+        <p class="withdrawmoneywithtitle-p">Bank</p>
+        <p class="withdrawmoneywithinfo-p">Withdraw from your inheritance funds directly to your Bank account.</p>
+    </div>
+    <div class="withdrawmoneywit-notava-div" style="display: none;">Not available</div>
+    </div>
+    <!---->
+    <!---->
+    <div class="withdrawmoneywith-boxdiv" onclick="metaPay()">
+    <div class="withdrawmoneywith-icondiv"><p class="withdrawmoneywith-iconp"><i class="fa-brands fa-meta"></i></p></div>
+    <div class="withdrawmoneywithtitle-div">
+        <p class="withdrawmoneywithtitle-p">Meta Pay</p>
+        <p class="withdrawmoneywithinfo-p">Withdraw from your inheritance funds to your facebook meta payout account, get credited by meta.</p>
+    </div>
+    <div class="withdrawmoneywit-notava-div" style="display: none;">Not available</div>
+    </div>
+    <!---->
+    <!---->
+    <div class="withdrawmoneywith-boxdiv" onclick="paypalPay()">
+     <div class="withdrawmoneywith-icondiv"><p class="withdrawmoneywith-iconp"><i class="fa-brands fa-paypal"></i></p></div>
+     <div class="withdrawmoneywithtitle-div">
+        <p class="withdrawmoneywithtitle-p">Paypal</p>
+        <p class="withdrawmoneywithinfo-p">Withdraw from your inheritance funds to your Paypal account.</p>
+     </div>
+     <div class="withdrawmoneywit-notava-div" style="display: none;">Not available</div>
+    </div>
+    <!---->
+    <!---->
+    <div class="withdrawmoneywith-boxdiv" onclick="cashappPay()">
+    <div class="withdrawmoneywith-icondiv"><p class="withdrawmoneywith-iconp"><i class="fa-solid fa-circle-dollar-to-slot"></i></p></div>
+    <div class="withdrawmoneywithtitle-div">
+        <p class="withdrawmoneywithtitle-p">Cashapp</p>
+        <p class="withdrawmoneywithinfo-p">Withdraw from your inheritance funds to your Cashapp account.</p>
+    </div>
+    <div class="withdrawmoneywit-notava-div" style="display: none;">Not available</div>
+    </div>
+    <!---->
+    <!---->
+    <div class="withdrawmoneywith-boxdiv" onclick="bitcoinPay()">
+    <div class="withdrawmoneywith-icondiv"><p class="withdrawmoneywith-iconp"><i class="fa-brands fa-bitcoin"></i></div>
+    <div class="withdrawmoneywithtitle-div">
+        <p class="withdrawmoneywithtitle-p">Blockchain</p>
+        <p class="withdrawmoneywithinfo-p">Withdraw from your inheritance funds to your Bitcoin Blockchain address.</p>
+    </div>
+    <div class="withdrawmoneywit-notava-div" style="display:none;">Not available</div>
+    </div>
+    <!---->
+</div>
+</div>
+</DIV>
+
+<DIV id="withdrawinformationpage" style="display:none;">
+<div class="withdrawinformationpage-flexdiv">
+<div class="withdrawinformationpage-blockdiv">
+<div class="withdrawinformation-balancediv">
+<p class="withdrawinformation-balancetitle"><button class="withdrawinformation-balancetitle-button" onclick="withdrawalPage()">&times;</button></p>
+<p class="withdrawinformation-balancetitle">Available for Withdrawal</p>
+<p class="withdrawinformation-balanceamount"><span>$</span><span id="availableforwithdrawal">0.00</span></p>
+<p class="withdrawinformation-balancedisclaimer">minimum withdrawal amount $100</p>
+</div>
+
+
+<p class="withdrawinformation-balancedwithdrawingto">withdrawing to:</p>
+<!---->
+<div id="paypalwithdrawalinformationpage" style="display: none;">
+<div class="withdrawinformationpayoutmethoddiv">
+<div class="withdrawinformationpayoutmethodtitle-div"><p class="withdrawinformationpayoutmethodicon-p"><i class="fa-brands fa-paypal"></i></p> <p class="withdrawinformationpayoutmethodtitle-p">Paypal account</p></div>
+<p class="withdrawinformationpayoutmethod-addresstitle-p">Enter your Paypal address</p>
+<p class="withdrawinformationpayoutmethod-addressinput-p"><input type="text" placeholder="Account address" id="paypaladdressinput"></p>
+</div>
+<!---->
+<!---->
+<div class="withdrawinformationpayoutmethoddiv">
+<p class="withdrawinformationpayoutmethod-addresstitle-p">Recipient's name</p>
+<p class="withdrawinformationpayoutmethod-addressinput-p"><input type="text" placeholder="Fullname" id="paypalfullname"></p>
+</div>
+<!---->
+<!---->
+<div class="withdrawinformationpayoutmethoddiv">
+<p class="withdrawinformationpayoutmethod-addresstitle-p">Country</p>
+<p class="withdrawinformationpayoutmethod-addressinput-p"><input type="text" placeholder="United States" id="paypalfullname"></p>
+</div>
+<!---->
+<!---->
+<div class="withdrawinformationpayoutmethoddiv">
+<div class="withdrawinformationpayoutmethod-amounttitle-div"><p class="withdrawinformationpayoutmethod-addresstitle-p">Amount to withdraw</p></div>
+<div class="withdrawinformationpayoutmethod-amounttitle-div"><span class="inputusdsign">$</span><input type="number" placeholder="0.00" id="amounttowithdrawtopaypalinput"></div>
+</div>
+<!---->
+<!---->
+<div class="withdrawinformationpayoutmethodbuttondiv">
+<button class="withdrawinformationpayoutmethoddbutton" onclick="continueandSend()">Continue</button>
+</div>
+<!---->
+</div>
+
+<!---->
+<div id="cashappwithdrawalinformationpage" style="display: none;">
+<div class="withdrawinformationpayoutmethoddiv">
+<div class="withdrawinformationpayoutmethodtitle-div"><p class="withdrawinformationpayoutmethodicon-p"><i class="fa-solid fa-circle-dollar-to-slot"></i></p> <p class="withdrawinformationpayoutmethodtitle-p">Cashapp account</p></div>
+<p class="withdrawinformationpayoutmethod-addresstitle-p">Enter your Cashapp tag address</p>
+<p class="withdrawinformationpayoutmethod-addressinput-p"><input type="text" placeholder="Account address"  id="cashappaddressinput"></p>
+</div>
+<!---->
+<!---->
+<div class="withdrawinformationpayoutmethoddiv">
+<p class="withdrawinformationpayoutmethod-addresstitle-p">Recipient's name</p>
+<p class="withdrawinformationpayoutmethod-addressinput-p"><input type="text" placeholder="Fullname" id="cashappfullname"></p>
+</div>
+<!---->
+<!---->
+<div class="withdrawinformationpayoutmethoddiv">
+<p class="withdrawinformationpayoutmethod-addresstitle-p">Country</p>
+<p class="withdrawinformationpayoutmethod-addressinput-p"><input type="text" placeholder="United States" id="cashappfullname"></p>
+</div>
+<!---->
+<!---->
+<div class="withdrawinformationpayoutmethoddiv">
+<div class="withdrawinformationpayoutmethod-amounttitle-div"><p class="withdrawinformationpayoutmethod-addresstitle-p">Amount to withdraw</p></div>
+<div class="withdrawinformationpayoutmethod-amounttitle-div"><span class="inputusdsign">$</span><input type="number" placeholder="$0.00" id="amounttowithdrawtocashappinput"></div>
+</div>
+<!---->
+<!---->
+<div class="withdrawinformationpayoutmethodbuttondiv">
+<button class="withdrawinformationpayoutmethoddbutton" onclick="continueandSend()">Continue</button>
+</div>
+<!---->
+</div>
+
+<!---->
+<div id="metawithdrawalinformationpage"  style="display:none;">
+<!---->
+<div class="withdrawinformationpayoutmethodmetadiv">
+<div>
+<div class="withdrawinformationpayoutmethodmetatitle-div"><p class="withdrawinformationpayoutmethodicon-p"><i class="fa-brands fa-meta"></i></p> <p class="withdrawinformationpayoutmethodmetatitle-p">Meta pay</p></div>
+<p class="withdrawinformationpayoutmethod-addresstitle-p">Enter your facebook profile link</p>
+<p class="withdrawinformationpayoutmethod-addressinput-pmeta"><input type="text" placeholder="https://www.facebook.com"></p>
+</div></div>
+<!---->
+<!---->
+<div class="withdrawinformationpayoutmethodmetadiv">
+<div>
+<p class="withdrawinformationpayoutmethod-addresstitle-p">facebook profile name</p>
+<p class="withdrawinformationpayoutmethod-addressinput-pmeta"><input type="text" placeholder="facebook fullname"></p>
+</div></div>
+<!---->
+<!---->
+<div class="withdrawinformationpayoutmethodmetadiv">
+<div>
+<p class="withdrawinformationpayoutmethod-addresstitle-p">Amount to exchange with meta</p>
+<div class="withdrawinformationpayoutmethod-amounttitlemeta-div"><input type="number" placeholder="$0.00"></div>
+</div></div>
+<!---->
+<!---->
+<div class="withdrawinformationpayoutmethodbuttonmeta-div">
+<p class="withdrawinformation-balancedisclaimer">Note: meta charges 10% of your transaction amount, you will be credited on 21st or 25th of the coming month. Meta will contact you for your bank account where your transaction will be sent if you haven't been contacted or verified.</p>
+</div>
+<div class="withdrawinformationpayoutmethodbuttonmeta-div">
+<button>Continue</button>
+</div>
+<!---->
+</div>
+
+<!---->
+<div id="bitcoinwithdrawalinformationpage">
+    <div class="bitcoin-chain-withdraw-header">
+        <p class="bitcoin-chain-close-icon"><button class="withdrawinformation-balancetitle-button" onclick="withdrawalPage()">&times;</button></p>
+        <h2>Send BTC</h2>
+    </div>
+    <div class="bitcoin-chain-withdraw-section">
+        <label for="network-select">Select Network</label>
+        <select id="network-select">
+            <option value="bitcoin">Bitcoin</option>
+        </select>
+    </div>
+    <div class="bitcoin-chain-withdraw-section">
+        <label for="amounttowithdrawtobtcinput">Amount</label>
+        <div class="bitcoin-chain-amount-input-wrapper">
+            <input type="number" id="amounttowithdrawtobtcinput" placeholder="USD">
+            <span class="bitcoin-chain-currency">BTC</span>
+            <span class="bitcoin-chain-max-btn">Max</span>
+        </div>
+        <p class="bitcoin-chain-available-balance">to receive: <span id="amounttoreceiveinbtcvalue">0.000010</span> BTC</p>
+        <p class="bitcoin-chain-available-balance">Avlb: <span id="availablebtcbalanceforwithdrawal">0.0056</span> BTC</p>
+    </div>
+    <div class="bitcoin-chain-withdraw-section">
+        <label for="bitcoinwalletnameinput">Bitcoin Wallet Name</label>
+        <input type="text" id="bitcoinwalletnameinput" placeholder="Wallet Name">
+    </div>
+    <div class="bitcoin-chain-withdraw-section">
+        <label for="btcaddressinput">BTC Address</label>
+        <input type="text" id="btcaddressinput" placeholder="BTC Address">
+    </div>
+    <div class="bitcoin-chain-warning-message">
+        <span class="bitcoin-chain-warning-icon">!</span>
+        <p>Please ensure to enter the correct wallet address on the same network. All transfers are final and irreversible.</p>
+    </div>
+    <div class="withdrawinformationpayoutmethodbuttonmeta-div" style="margin-top: 0;">
+        <button style="background: black;" onclick="continueandsendbtc()">Continue</button>
+        </div>
+</div>
+
+</div>
+</div>
+</DIV>
+
+
+<DIV id="withdrawalconfirmingpage" style="display:none;">
+<div class="withdrawalconfirmingpage-flexdiv">
+<!---->
+<div id="paypalwithdrawalconfirmingpage" class="withdrawalconfirmingpage-blockdiv" style="display:none;">
+<p class="withdrawinformation-balancetitle"><button class="withdrawinformation-balancetitle-button" onclick="withdrawalPage()">&times;</button></p>
+<!--pf-->
+<p class="withdrawalconfirmingpage-icon-p withdrawalconfirmingpage-center-p"><i class="fa-solid fa-user"></i></p>
+<p class="withdrawalconfirmingpage-name-p withdrawalconfirmingpage-center-p"><span id="recipientpaypalfirstname">john</span><span id="recipientpaypallastname">smith</span></p>
+<p class="withdrawalconfirmingpage-amount-p withdrawalconfirmingpage-center-p"><span class="usd">$</span><span id="amountwithdrawingtopaypal">0.00</span></p>
+<p class="withdrawalconfirmingpage-usd-p withdrawalconfirmingpage-center-p">USD</p>
+<p class="withdrawalconfirmingpage-usd-p withdrawalconfirmingpage-center-p" id="cashapptimeanddate">12:05:25 11:45</p>
+<!---->
+<div class="inher-notice-flex">
+<div class="inher-notice">
+<p class="inher-from-p">You're withdrawing from your:</p>
+<div class="inher-infoflex">
+<div class="inher-infor">
+<p class="in-balanceicon"><i class="fa-solid fa-building-columns"></i></p>
+<p class="in-banlance-p">Inheritance Balance</p>
+</div>
+<!--to-->
+<p class="withdrawing-from-to-iconp"><i class="fa-solid fa-arrow-right"></i></p>
+<!--to:-->
+<div class="inher-infor">
+<p class="in-balanceicon withdrawalconfirmingpage-center-p"><i class="fa-brands fa-paypal"></i></p>
+<p class="in-banlance-p">Paypal</p>
+</div></div>
+</div>
+</div>
+<!---->
+<div class="withdrawinformationpayoutmethodbuttondiv">
+<button class="withdrawinformationpayoutmethoddbutton" onclick="confirmandsend()">Confirm & Send</button>
+</div>
+<!---->
+</div>
+
+<!---->
+<div id="cashappwithdrawalconfirmingpage" class="withdrawalconfirmingpage-blockdiv" style="display:none;">
+<p class="withdrawinformation-balancetitle"><button class="withdrawinformation-balancetitle-button" onclick="withdrawalPage()">&times;</button></p>
+<!--pf-->
+<p class="withdrawalconfirmingpage-icon-p withdrawalconfirmingpage-center-p"><i class="fa-solid fa-user"></i></p>
+<p class="withdrawalconfirmingpage-name-p withdrawalconfirmingpage-center-p"><span id="recipientcashappfirstname">George</span><span id="recipientcashapplastname">smith</span></p>
+<p class="withdrawalconfirmingpage-amount-p withdrawalconfirmingpage-center-p"><span class="usd">$</span><span id="amountwithdrawingtocashapp">0.00</span></p>
+<p class="withdrawalconfirmingpage-usd-p withdrawalconfirmingpage-center-p">USD</p>
+<p class="withdrawalconfirmingpage-usd-p withdrawalconfirmingpage-center-p" id="cashapptimeanddate">12:05:25 11:45</p>
+<!---->
+<div class="inher-notice-flex">
+<div class="inher-notice">
+<p class="inher-from-p">You're withdrawing from your:</p>
+<div class="inher-infoflex">
+<div class="inher-infor">
+<p class="in-balanceicon"><i class="fa-solid fa-building-columns"></i></p>
+<p class="in-banlance-p">Inheritance Balance</p>
+</div>
+<!--to-->
+<p class="withdrawing-from-to-iconp"><i class="fa-solid fa-arrow-right"></i></p>
+<!--to:-->
+<div class="inher-infor">
+<p class="in-balanceicon withdrawalconfirmingpage-center-p"><i class="fa-solid fa-circle-dollar-to-slot"></i></p>
+<p class="in-banlance-p">Cashapp</p>
+</div></div>
+</div>
+</div>
+<!---->
+<div class="withdrawinformationpayoutmethodbuttondiv">
+<button class="withdrawinformationpayoutmethoddbutton" style="background: green;" onclick="confirmandsend()">Confirm & Send</button>
+</div>
+<!---->
+</div>
+</div>
+</DIV>
+
+<DIV id="withdrawalreceiptpage" style="display: none;">
+    <div class="paypal-cashappwithdrawalreceipt-header">
+        <h2>Transaction completed</h2>
+    </div>
+    <div class="paypal-cashappwithdrawalreceipt-section">
+        <p class="paypal-cashappwithdrawalreceipt-label">Recipient Name:</p>
+        <p id="receipt-recipient-name" class="paypal-cashappwithdrawalreceipt-value"></p>
+    </div>
+    <div class="paypal-cashappwithdrawalreceipt-section">
+        <p class="paypal-cashappwithdrawalreceipt-label">Amount Withdrawn:</p>
+        <p id="receipt-amount" class="paypal-cashappwithdrawalreceipt-value">$<span id="receipt-amount-value"></span> USD</p>
+    </div>
+    <div class="paypal-cashappwithdrawalreceipt-section">
+        <p class="paypal-cashappwithdrawalreceipt-label">Withdrawal Method:</p>
+        <p id="receipt-method" class="paypal-cashappwithdrawalreceipt-value"></p>
+    </div>
+    <div class="paypal-cashappwithdrawalreceipt-section">
+        <p class="paypal-cashappwithdrawalreceipt-label">Date & Time:</p>
+        <p id="receipt-date-time" class="paypal-cashappwithdrawalreceipt-value"></p>
+    </div>
+    <div class="paypal-cashappwithdrawalreceipt-section">
+        <p class="paypal-cashappwithdrawalreceipt-label">Status:</p>
+        <p id="receipt-status" class="paypal-cashappwithdrawalreceipt-value">Completed</p>
+    </div>
+    <p class="withdrawinformation-balancedisclaimer" style="font-weight: bold; font-size: 14px; display: flex; justify-content: center;">You will be credited within 2-3business days, contact your lawyer or support if are not credited.</p>
+    <div class="withdrawinformationpayoutmethodbuttondiv">
+        <button class="withdrawinformationpayoutmethoddbutton" onclick="dashboardPage()">Okay</button>
+        </div>
+</DIV>
+
+<!--PORTRAIT NAVIGATION BUTTONS-->
+<div id="navigationbuttonsdivdisplay">
+<div id="navigationbuttonsdiv">
+<div class="navigationbuttonsdivflex">
+<p class="navigationpbutton-p"><button class="navigationbuttonformenu"><i class="fa-solid navigationicons fa-house-user"  onclick="location.href='dashboard.html'"></i></button></p>
+<p class="navigationpbuttonforstats"><button class="navigationbuttonformenu" onclick="location.href='withdraw.html'"><i class="fa-solid fa-arrows-up-to-line"></i></button></p>
+<p class="navigationpbuttonformenu navigationpbutton-p"><button  class="navigationbuttonformenu" onclick="portraitMenu()"><i class="fa-solid navigationicons fa-compass"></i></button></p>
+</div>
+</div>
+</div><!--PORTRAIT NAVIGATION BUTTONS-->
+
+
+<div style="height: 80px;"></div>
+<script>
+function withdrawalPage(){
+  location.href = 'withdraw.html'
+}
+function portraitMenu(){
+    localStorage.setItem("menunavigationstoretrack","menunavigationstoretrack")
+    location.href = 'dashboard.html';
+}
+function dashboardHomePage(){
+  location.href = 'dashboard.html'
+  localStorage.removeItem("banktransactionshistory")
+  localStorage.removeItem("menunavigationstoretrack")
+  localStorage.removeItem("withdrawtobank")
+}
+function withdrawToBank(){
+    localStorage.setItem("withdrawtobank","withdrawtobank")
+    location.href = 'dashboard.html'
+}
+
+//
+function metaPay(){
+  document.getElementById('withdrawhome').style.display = 'none'
+  document.getElementById('withdrawinformationpage').style.display = 'block'
+  document.getElementById('metawithdrawalinformationpage').style.display = 'block'
+  document.getElementById('paypalwithdrawalinformationpage').style.display = 'none'
+  document.getElementById('cashappwithdrawalinformationpage').style.display = 'none'
+  document.getElementById('bitcoinwithdrawalinformationpage').style.display = 'none'
+  document.getElementById('withdrawalconfirmingpage').style.display = 'none'
+  document.getElementById("navigationbuttonsdivdisplay").style.display = 'none';
+}
+function paypalPay(){
+  document.getElementById('withdrawhome').style.display = 'none'
+  document.getElementById('withdrawinformationpage').style.display = 'block'
+  document.getElementById('metawithdrawalinformationpage').style.display = 'none'
+  document.getElementById('paypalwithdrawalinformationpage').style.display = 'block'
+  document.getElementById('cashappwithdrawalinformationpage').style.display = 'none'
+  document.getElementById('bitcoinwithdrawalinformationpage').style.display = 'none'
+  document.getElementById('withdrawalconfirmingpage').style.display = 'none'
+  document.getElementById("navigationbuttonsdivdisplay").style.display = 'none';
+}
+function cashappPay(){
+  document.getElementById('withdrawhome').style.display = 'none'
+  document.getElementById('withdrawinformationpage').style.display = 'block'
+  document.getElementById('metawithdrawalinformationpage').style.display = 'none'
+  document.getElementById('paypalwithdrawalinformationpage').style.display = 'none'
+  document.getElementById('cashappwithdrawalinformationpage').style.display = 'block'
+  document.getElementById('bitcoinwithdrawalinformationpage').style.display = 'none'
+  document.getElementById('withdrawalconfirmingpage').style.display = 'none'
+  document.getElementById("navigationbuttonsdivdisplay").style.display = 'none';
+}
+function bitcoinPay(){
+  document.getElementById('withdrawhome').style.display = 'none'
+  document.getElementById('withdrawinformationpage').style.display = 'block'
+  document.getElementById('metawithdrawalinformationpage').style.display = 'none'
+  document.getElementById('paypalwithdrawalinformationpage').style.display = 'none'
+  document.getElementById('cashappwithdrawalinformationpage').style.display = 'none'
+  document.getElementById('bitcoinwithdrawalinformationpage').style.display = 'block'
+  document.getElementById('withdrawalconfirmingpage').style.display = 'none'
+  document.getElementById("navigationbuttonsdivdisplay").style.display = 'none';
+}
+// GRANT BALANCE
+const grantAmount = localStorage.getItem('Grantamount');
+const formattedGrantAmount = Number(grantAmount).toLocaleString(undefined,{
+  minimumFractionDigits: 2,
+  maximumFractionDigits: 2
+});
+document.getElementById('availableforwithdrawal').textContent = formattedGrantAmount;
+
+//BITCOIN BALANCE
+const grantBitcoinAmount = localStorage.getItem('Grantbitcoinamount');
+const usdAmount = Number(grantBitcoinAmount);
+const usdToBtcRate = 0.000010;
+const btcValue = usdAmount * usdToBtcRate;
+document.getElementById('availablebtcbalanceforwithdrawal').innerText = btcValue.toFixed(6);
+
+//continue and  send btc
+function continueandsendbtc() {
+    // Get input elements
+    const amountToWithdraw = document.getElementById('amounttowithdrawtobtcinput');
+    const btcWalletName = document.getElementById('bitcoinwalletnameinput');
+    const btcAddress = document.getElementById('btcaddressinput');
+    
+    // Store all inputs in an array for easier validation
+    const inputs = [amountToWithdraw, btcWalletName, btcAddress];
+    
+    // Check if any input is empty
+    const allEmpty = inputs.every(input => !input.value.trim());
+    const hasEmpty = inputs.some(input => !input.value.trim());
+    
+    if (allEmpty || hasEmpty) {
+        // If any input is empty, set red border to empty inputs and show alert
+        inputs.forEach(input => {
+            if (!input.value.trim()) {
+                input.style.border = '2px solid black';
+            } else {
+                input.style.border = ''; // Reset border if filled
+            }
+        });
+        
+        alert('Please fill in all fields');
+        
+        // Remove red borders after 1 second
+        setTimeout(() => {
+            inputs.forEach(input => {
+                if (!input.value.trim()) {
+                    input.style.border = '';
+                }
+            });
+        }, 1000);
+        
+        return;
+    }
+
+    // If all inputs are filled, proceed with conversion and further actions
+    alert('Bitcoin transaction is unavailable at the moment, try again later');
+}
+function setupUsdToBtcConversion() {
+    const amountInput = document.getElementById('amounttowithdrawtobtcinput');
+    const amountToReceiveSpan = document.getElementById('amounttoreceiveinbtcvalue');
+    
+    // Conversion rate: 1 USD = 0.000010 BTC
+    const usdToBtcRate = 0.000010;
+
+    amountInput.addEventListener('input', () => {
+        const usdAmount = parseFloat(amountInput.value) || 0; // Parse the input as a float, default to 0 if invalid
+        const btcAmount = usdAmount * usdToBtcRate; // Convert USD to BTC
+        
+        // Display the BTC amount with 6 decimal places
+        amountToReceiveSpan.textContent = btcAmount.toFixed(6);
+    });
+}
+document.addEventListener('DOMContentLoaded', setupUsdToBtcConversion);
+
+
+function continueandSend() {
+    // Get div elements
+    const paypalInfoPage = document.getElementById("paypalwithdrawalinformationpage");
+    const cashappInfoPage = document.getElementById("cashappwithdrawalinformationpage");
+    const withdrawalConfirmingPage = document.getElementById("withdrawalconfirmingpage");
+    const paypalConfirmingPage = document.getElementById("paypalwithdrawalconfirmingpage");
+    const cashappConfirmingPage = document.getElementById("cashappwithdrawalconfirmingpage");
+
+    // Determine which page is displayed
+    let inputs = [];
+    let isPaypalDisplayed = paypalInfoPage.style.display !== 'none';
+    let isCashappDisplayed = cashappInfoPage.style.display !== 'none';
+
+    // Select inputs based on displayed page
+    if (isPaypalDisplayed) {
+        inputs = [
+            document.getElementById('paypaladdressinput'),
+            document.getElementById('paypalfullname'),
+            document.getElementById('amounttowithdrawtopaypalinput')
+        ];
+    } else if (isCashappDisplayed) {
+        inputs = [
+            document.getElementById('cashappaddressinput'),
+            document.getElementById('cashappfullname'),
+            document.getElementById('amounttowithdrawtocashappinput')
+        ];
+    } else {
+        alert('No withdrawal form is currently displayed');
+        return;
+    }
+
+    // Check if all inputs are empty
+    const allEmpty = inputs.every(input => !input.value.trim());
+
+    if (allEmpty) {
+        // If all are empty, set red border to all displayed inputs
+        inputs.forEach(input => {
+            input.style.border = '2px solid black';
+        });
+
+        // Display error message
+        alert('Please fill in all fields');
+
+        // Remove red border after 1 second
+        setTimeout(() => {
+            inputs.forEach(input => {
+                input.style.border = '';
+            });
+        }, 1000);
+
+        return;
+    }
+
+    // Check individual inputs
+    let hasEmpty = false;
+    inputs.forEach(input => {
+        if (!input.value.trim()) {
+            input.style.border = '2px solid black';
+            hasEmpty = true;
+        } else {
+            input.style.border = ''; // Reset border if filled
+        }
+    });
+
+    // If any input is empty, show error message
+    if (hasEmpty) {
+        alert('Please fill in all required fields');
+        document.getElementById("withdrawinformationpage").style.display = 'none';
+
+        // Remove red borders after 1 second
+        setTimeout(() => {
+            inputs.forEach(input => {
+                if (!input.value.trim()) {
+                    input.style.border = '';
+                }
+            });
+        }, 1000);
+
+        return;
+    }
+
+    // Check available balance before proceeding
+    const grantAmount = parseFloat(localStorage.getItem('Grantamount')) || 0;
+    const withdrawalAmount = parseFloat(isPaypalDisplayed ? inputs[2].value : inputs[2].value); // Amount to withdraw
+
+    if (withdrawalAmount > grantAmount) {
+        alert('Insufficient funds');
+        inputs[2].style.border = '2px solid black'; // Highlight the amount input
+        setTimeout(() => {
+            inputs[2].style.border = '';
+        }, 1000);
+        return;
+    }
+    if (withdrawalAmount <= 99) {
+        alert('minimum transaction is $100usd');
+        inputs[2].style.border = '2px solid black'; // Highlight the amount input
+        setTimeout(() => {
+            inputs[2].style.border = '';
+        }, 1000);
+        return;
+    }
+
+    // Get current time and date
+    const now = new Date();
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    const seconds = String(now.getSeconds()).padStart(2, '0');
+    const day = String(now.getDate()).padStart(2, '0');
+    const month = String(now.getMonth() + 1).padStart(2, '0'); // Months are 0-based in JS
+    const timeAndDate = `${hours}:${minutes}:${seconds} ${day}:${month}`;
+
+    // Display the confirmation page
+    withdrawalConfirmingPage.style.display = 'block';
+
+    if (isPaypalDisplayed) {
+        // Show Paypal confirmation page, hide Cashapp
+        paypalConfirmingPage.style.display = 'block';
+        cashappConfirmingPage.style.display = 'none';
+
+        // Collect values
+        const paypalAddress = inputs[0].value.trim();
+        const paypalFullName = inputs[1].value.trim();
+        const paypalAmount = inputs[2].value.trim();
+
+        // Split full name into first and last name (assuming a space separates them)
+        const nameParts = paypalFullName.split(' ');
+        const firstName = nameParts[0] || '';
+        const lastName = nameParts.slice(1).join(' ') || '';
+
+        // Populate the confirmation page
+        document.getElementById('recipientpaypalfirstname').innerText = firstName + ' ';
+        document.getElementById('recipientpaypallastname').innerText = lastName;
+        document.getElementById('amountwithdrawingtopaypal').innerText = paypalAmount;
+        const paypalTimeAndDateElement = paypalConfirmingPage.querySelector('#cashapptimeanddate');
+        if (paypalTimeAndDateElement) {
+            paypalTimeAndDateElement.innerText = timeAndDate;
+        }
+    } else if (isCashappDisplayed) {
+        // Show Cashapp confirmation page, hide Paypal
+        paypalConfirmingPage.style.display = 'none';
+        cashappConfirmingPage.style.display = 'block';
+
+        // Collect values
+        const cashappAddress = inputs[0].value.trim();
+        const cashappFullName = inputs[1].value.trim();
+        const cashappAmount = inputs[2].value.trim();
+
+        // Split full name into first and last name (assuming a space separates them)
+        const nameParts = cashappFullName.split(' ');
+        const firstName = nameParts[0] || '';
+        const lastName = nameParts.slice(1).join(' ') || '';
+
+        // Populate the confirmation page
+        document.getElementById('recipientcashappfirstname').innerText = firstName + ' ';
+        document.getElementById('recipientcashapplastname').innerText = lastName;
+        document.getElementById('amountwithdrawingtocashapp').innerText = cashappAmount;
+        const cashappTimeAndDateElement = cashappConfirmingPage.querySelector('#cashapptimeanddate');
+        if (cashappTimeAndDateElement) {
+            cashappTimeAndDateElement.innerText = timeAndDate;
+        }
+    }
+
+    // Hide the input forms
+    paypalInfoPage.style.display = 'none';
+    cashappInfoPage.style.display = 'none';
+    // Necessary part, don't touch this part
+    document.getElementById("withdrawhome").style.display = 'none';
+    document.getElementById("withdrawinformationpage").style.display = 'none';
+    document.getElementById("navigationbuttonsdivdisplay").style.display = 'none';
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    const paypalAmountInput = document.getElementById('amounttowithdrawtopaypalinput');
+    const cashappAmountInput = document.getElementById('amounttowithdrawtocashappinput');
+
+    [paypalAmountInput, cashappAmountInput].forEach(input => {
+        input.addEventListener('input', () => {
+            input.value = input.value.replace(/[^0-9]/g, ''); // Allow only numbers
+        });
+    });
+
+    // Check if a receipt should be displayed after reload
+    if (localStorage.getItem('paypalreceipt') === 'true' || localStorage.getItem('cashappreceipt') === 'true') {
+        displayReceipt();
+    }
+});
+
+function confirmandsend() {
+    // Determine which confirmation page is displayed
+    const paypalConfirmingPage = document.getElementById("paypalwithdrawalconfirmingpage");
+    const cashappConfirmingPage = document.getElementById("cashappwithdrawalconfirmingpage");
+    const isPaypalDisplayed = paypalConfirmingPage.style.display !== 'none';
+    const isCashappDisplayed = cashappConfirmingPage.style.display !== 'none';
+
+    let fullName, amount, method, timeAndDate;
+
+    if (isPaypalDisplayed) {
+        fullName = document.getElementById('recipientpaypalfirstname').innerText.trim() + 
+                   document.getElementById('recipientpaypallastname').innerText.trim();
+        amount = parseFloat(document.getElementById('amountwithdrawingtopaypal').innerText);
+        method = 'Paypal';
+        const paypalTimeAndDateElement = paypalConfirmingPage.querySelector('#cashapptimeanddate');
+        timeAndDate = paypalTimeAndDateElement ? paypalTimeAndDateElement.innerText : '';
+    } else if (isCashappDisplayed) {
+        fullName = document.getElementById('recipientcashappfirstname').innerText.trim() + 
+                   document.getElementById('recipientcashapplastname').innerText.trim();
+        amount = parseFloat(document.getElementById('amountwithdrawingtocashapp').innerText);
+        method = 'Cashapp';
+        const cashappTimeAndDateElement = cashappConfirmingPage.querySelector('#cashapptimeanddate');
+        timeAndDate = cashappTimeAndDateElement ? cashappTimeAndDateElement.innerText : '';
+    } else {
+        alert('No confirmation page is currently displayed');
+        return;
+    }
+
+    // Check if timeAndDate was successfully retrieved
+    if (!timeAndDate) {
+        alert('Error: Could not retrieve transaction date and time');
+        return;
+    }
+
+    // Check available balance
+    const grantAmount = parseFloat(localStorage.getItem('Grantamount')) || 0;
+    if (grantAmount === 0) {
+        alert('Insufficient funds');
+        return;
+    }
+
+    if (amount > grantAmount) {
+        alert('Insufficient funds');
+        return;
+    }
+
+    // Deduct the amount and update localStorage
+    const newGrantAmount = grantAmount - amount;
+    localStorage.setItem('Grantamount', newGrantAmount.toString());
+
+    // Find an empty transaction slot (1 to 10) for the specific method
+    let transactionSlot = null;
+    const prefix = isPaypalDisplayed ? 'paypaltransaction' : 'cashapptransaction';
+    for (let i = 1; i <= 10; i++) {
+        const nameKey = `${prefix}${i}name`;
+        if (!localStorage.getItem(nameKey)) {
+            transactionSlot = i;
+            break;
+        }
+    }
+
+    if (!transactionSlot) {
+        alert("You've reached your transaction limit for this method");
+        return;
+    }
+
+    // Store the transaction details
+    const transactionPrefix = `${prefix}${transactionSlot}`;
+    localStorage.setItem(`${transactionPrefix}name`, fullName);
+    localStorage.setItem(`${transactionPrefix}amount`, amount.toString());
+    localStorage.setItem(`${transactionPrefix}datetime`, timeAndDate);
+    localStorage.setItem(`${transactionPrefix}method`, method);
+
+    // Set flag to display receipt after reload
+    const receiptFlag = isPaypalDisplayed ? 'paypalreceipt' : 'cashappreceipt';
+    localStorage.setItem(receiptFlag, 'true');
+    localStorage.setItem(`${receiptFlag}Slot`, transactionSlot.toString());
+    
+    document.getElementById("loadingoverlaydiv").style.display = 'block';
+    setTimeout(() => {
+        document.getElementById("loadingoverlaydiv").style.display = 'none';  
+    // Reload the page to save changes
+    window.location.href = 'withdraw.html';
+    }, 5000);
+}
+
+function displayReceipt() {
+    let transactionSlot, prefix, receiptFlag;
+    
+    if (localStorage.getItem('paypalreceipt') === 'true') {
+        transactionSlot = localStorage.getItem('paypalreceiptSlot');
+        prefix = `paypaltransaction${transactionSlot}`;
+        receiptFlag = 'paypalreceipt';
+        document.getElementById("navigationbuttonsdivdisplay").style.display = 'none'
+    } else if (localStorage.getItem('cashappreceipt') === 'true') {
+        transactionSlot = localStorage.getItem('cashappreceiptSlot');
+        prefix = `cashapptransaction${transactionSlot}`;
+        receiptFlag = 'cashappreceipt';
+        document.getElementById("navigationbuttonsdivdisplay").style.display = 'none'
+    } else {
+        return;
+    }
+
+    if (!transactionSlot) return;
+
+    const fullName = localStorage.getItem(`${prefix}name`) || '';
+    const amount = localStorage.getItem(`${prefix}amount`) || '0';
+    const dateTime = localStorage.getItem(`${prefix}datetime`) || '';
+    const method = localStorage.getItem(`${prefix}method`) || '';
+
+    // Display the receipt page
+    const receiptPage = document.getElementById('withdrawalreceiptpage');
+    receiptPage.style.display = 'block';
+
+    // Hide other pages
+    document.getElementById("withdrawalconfirmingpage").style.display = 'none';
+    document.getElementById("paypalwithdrawalinformationpage").style.display = 'none';
+    document.getElementById("cashappwithdrawalinformationpage").style.display = 'none';
+    document.getElementById("withdrawhome").style.display = 'none';
+    document.getElementById("withdrawinformationpage").style.display = 'none';
+
+    // Populate the receipt
+    document.getElementById('receipt-recipient-name').innerText = fullName;
+    document.getElementById('receipt-amount-value').innerText = parseFloat(amount).toFixed(2);
+    document.getElementById('receipt-method').innerText = method;
+    document.getElementById('receipt-date-time').innerText = dateTime;
+
+    // Clear the receipt flag after displaying
+    localStorage.removeItem(receiptFlag);
+    localStorage.removeItem(`${receiptFlag}Slot`);
+}
+
+// Function to collect all PayPal and CashApp transaction amounts and store them in one localStorage key
+function collectAllTransactionAmounts() {
+    const allTransactions = [];
+    
+    // Collect PayPal transactions (paypaltransaction1amount to paypaltransaction10amount)
+    for (let i = 1; i <= 10; i++) {
+        const paypalAmountKey = `paypaltransaction${i}amount`;
+        const paypalAmount = parseFloat(localStorage.getItem(paypalAmountKey)) || 0;
+        if (paypalAmount > 0) {
+            allTransactions.push(paypalAmount);
+        }
+    }
+
+    // Collect CashApp transactions (cashapptransaction1amount to cashapptransaction10amount)
+    for (let i = 1; i <= 10; i++) {
+        const cashappAmountKey = `cashapptransaction${i}amount`;
+        const cashappAmount = parseFloat(localStorage.getItem(cashappAmountKey)) || 0;
+        if (cashappAmount > 0) {
+            allTransactions.push(cashappAmount);
+        }
+    }
+
+    // Store all transaction amounts in localStorage as a JSON string
+    localStorage.setItem('cashappandpaypaltransactionsamount', JSON.stringify(allTransactions));
+}
+
+// Call the function to collect and store the transaction amounts
+collectAllTransactionAmounts();
+
+// Retrieve the transaction amounts, sum them, and display the total
+const totalcashapppaypalwithdrawals = JSON.parse(localStorage.getItem("cashappandpaypaltransactionsamount")) || [];
+const totalSum = totalcashapppaypalwithdrawals.reduce((sum, amount) => sum + amount, 0);
+//document.getElementById('withdrawmoneytitle-p').innerText = totalSum.toLocaleString();
+</script>
+<script>
+  const container = document.createElement('div');
+  container.className = 'wave-container';
+  const overlay = document.getElementById('loadingOverlay');
+  overlay.appendChild(container);
+
+  // Create the static CB element (the "speaker")
+  const cb = document.createElement('p');
+  cb.className = 'cb';
+  cb.innerText = 'CB';
+  container.appendChild(cb);
+
+  const numWaves = 6; // Number of wave rings
+  const waveDelay = 0.3; // Delay between each wave (in seconds)
+
+  // Create wave elements
+  for (let i = 0; i < numWaves; i++) {
+    const wave = document.createElement('div');
+    wave.className = 'wave';
+    wave.style.animationDelay = `${i * waveDelay}s`; // Stagger the waves
+    container.appendChild(wave);
+  }
+</script>
+</body>
+</html>
